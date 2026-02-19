@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Portal Navigation Redesign · Sai Aditya Kuppili</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── Tokens ─────────────────────────────────────── */
+:root {
+  --bg:           #FAFAF8;
+  --white:        #FFFFFF;
+  --surface:      #F4F3F0;
+  --border:       #E8E6E1;
+  --border-light: #F0EDE8;
+  --text:         #1A1916;
+  --text-2:       #3D3C38;
+  --muted:        #78766E;
+  --muted2:       #ABA9A1;
+  --old:          #B84035;
+  --old-bg:       #FDF1EE;
+  --old-border:   #EEC9BF;
+  --new:          #1D6E49;
+  --new-bg:       #EEF6F1;
+  --new-border:   #A8D8BC;
+  --accent:       #1A1916;
+  --yellow:       #F5A623;
+  --blue:         #2563EB;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─────────────────────────────────────── */
+.page { max-width: 800px; margin: 0 auto; padding: 80px 32px 120px; }
+
+/* ─── Typography ─────────────────────────────────── */
+.serif { font-family: 'Instrument Serif', Georgia, serif; }
+.mono  { font-family: 'Geist Mono', 'Courier New', monospace; }
+
+.eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+h1.title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+
+h2.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+h3.sub-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+p {
+  color: var(--text-2);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+p:last-child { margin-bottom: 0; }
+
+/* ─── Section spacing ────────────────────────────── */
+.section { margin-bottom: 80px; }
+.section-inner { margin-bottom: 40px; }
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+/* ─── Hero ───────────────────────────────────────── */
+.hero { margin-bottom: 64px; }
+
+.hero-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--white);
+}
+
+/* ─── Hero image ─────────────────────────────────── */
+.hero-img {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-top: 36px;
+}
+
+.hero-img img { width: 100%; display: block; }
+
+/* ─── Role strip ─────────────────────────────────── */
+.role-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  margin-bottom: 40px;
+}
+
+.role-cell {
+  padding: 20px 22px;
+  border-right: 1px solid var(--border);
+}
+
+.role-cell:last-child { border-right: none; }
+
+.role-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 6px;
+}
+
+.role-value {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  color: var(--text);
+}
+
+/* ─── Pain points ────────────────────────────────── */
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.pain-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+}
+
+.pain-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  margin-bottom: 8px;
+}
+
+.pain-text {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── Data tables ────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.data-table thead tr {
+  background: var(--surface);
+}
+
+.data-table th {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-2);
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table tr:hover td { background: var(--bg); }
+
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.pill.easy   { background: var(--new-bg);  color: var(--new);  border: 1px solid var(--new-border); }
+.pill.diff   { background: #FEF3C7;        color: #92400E;     border: 1px solid #FDE68A; }
+.pill.fail   { background: var(--old-bg);  color: var(--old);  border: 1px solid var(--old-border); }
+
+.before-after {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.before-after .before { color: var(--muted); text-decoration: line-through; }
+.before-after .arrow  { color: var(--muted2); }
+.before-after .after  { color: var(--new); font-weight: 500; }
+
+/* ─── Quotes ─────────────────────────────────────── */
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.quote-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 22px;
+  position: relative;
+}
+
+.quote-mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--border);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.quote-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ─── Images ─────────────────────────────────────── */
+.img-row {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.img-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.img-row.cols-1 { grid-template-columns: 1fr; }
+
+.img-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.img-frame img { width: 100%; display: block; }
+
+.img-caption {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted2);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ─── Tradeoff cards ─────────────────────────────── */
+.tradeoff-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+.tradeoff-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tradeoff-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tradeoff-header:hover { background: var(--bg); }
+
+.tradeoff-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.tradeoff-label { font-size: 14px; font-weight: 600; flex: 1; }
+
+.tradeoff-vs {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: var(--surface);
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+.tradeoff-chevron { color: var(--muted2); font-size: 11px; transition: transform 0.18s; }
+.tradeoff-card.collapsed .tradeoff-chevron { transform: rotate(-90deg); }
+.tradeoff-card.collapsed .tradeoff-body { display: none; }
+
+.tradeoff-body {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.tradeoff-body p { font-size: 13.5px; color: var(--muted); margin-top: 14px; margin-bottom: 10px; }
+.tradeoff-body p:last-child { margin-bottom: 0; }
+.tradeoff-body strong { color: var(--text-2); font-weight: 600; }
+
+.decision-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--new-bg);
+  border: 1px solid var(--new-border);
+  color: var(--new);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+/* ─── Table scroll wrapper ───────────────────────── */
+.data-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.data-table-wrap::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+.data-table-wrap .data-table { margin-bottom: 0; border-radius: 0; }
+
+/* ─── Callout / Highlight ────────────────────────── */
+.callout {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.callout p { font-size: 13.5px; color: var(--text-2); margin: 0; }
+.callout strong { color: var(--text); }
+
+/* ─── Stat highlight ─────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 22px;
+  text-align: center;
+}
+
+.stat-big {
+  font-family: 'Instrument Serif', serif;
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-big.green  { color: var(--new); }
+.stat-big.red    { color: var(--old); }
+.stat-big.black  { color: var(--text); }
+
+.stat-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ─── IA comparison section (inline) ────────────── */
+.ia-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 28px;
+}
+
+.ia-header { margin-bottom: 28px; }
+.ia-header h3 { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; margin-bottom: 8px; }
+.ia-header p  { font-size: 13px; color: var(--muted); margin: 0; }
+
+.ia-stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.ia-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  padding: 6px 14px;
+  background: var(--bg);
+  font-size: 12px;
+}
+
+.ia-num { font-family: 'Instrument Serif', serif; font-size: 18px; line-height: 1; }
+.ia-num.r { color: var(--old); }
+.ia-num.g { color: var(--new); }
+.ia-arrow { color: var(--muted2); }
+.ia-lbl   { color: var(--muted); }
+
+.ia-changes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.ia-chip {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  display: flex; align-items: center; gap: 5px;
+}
+
+.ia-chip b { color: var(--text-2); font-weight: 500; }
+
+/* IA comparison grid */
+.ia-comparison {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.ia-col-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.ia-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.ia-badge.old { background: var(--old-bg); color: var(--old); border: 1px solid var(--old-border); }
+.ia-badge.new { background: var(--new-bg); color: var(--new); border: 1px solid var(--new-border); }
+
+.ia-col-name { font-size: 11px; color: var(--muted); }
+
+.ia-spine {
+  display: flex; flex-direction: column; align-items: center; padding-top: 44px;
+}
+
+.ia-spine-line { width: 1px; background: var(--border); flex: 1; min-height: 12px; }
+
+.ia-spine-node {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--muted2); flex-shrink: 0;
+}
+
+/* Section cards in IA */
+.ia-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+  margin-bottom: 6px;
+}
+
+.ia-card .ia-card-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer; user-select: none;
+  border-left: 3px solid transparent;
+}
+
+.ia-card .ia-card-header:hover { background: var(--surface); }
+
+.ia-card .ia-card-label { font-size: 12px; font-weight: 600; flex: 1; }
+.ia-card .ia-card-count { font-family: 'Geist Mono', monospace; font-size: 9px; color: var(--muted2); }
+.ia-card .ia-chevron { color: var(--muted2); font-size: 9px; transition: transform 0.15s; }
+.ia-card.collapsed .ia-chevron { transform: rotate(-90deg); }
+.ia-card.collapsed .ia-card-body { display: none; }
+
+.ia-card-body { padding: 6px 12px 10px; border-top: 1px solid var(--border-light); }
+
+.ia-l2-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted2);
+  padding: 6px 0 3px;
+}
+
+.ia-item {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 2px 0; font-size: 11.5px; color: var(--muted); line-height: 1.4;
+}
+
+.ia-item::before { content: '–'; color: var(--border); font-size: 10px; flex-shrink: 0; }
+.ia-item.added { color: var(--new); }
+.ia-item.added::before { content: '+'; color: var(--new-border); font-weight: 600; }
+.ia-item.gone { color: var(--muted2); text-decoration: line-through; }
+.ia-item.gone::before { content: '×'; color: var(--old-border); }
+
+/* Card accent colors */
+.ia-c-ir   .ia-card-header { border-left-color: #C84B2F; }
+.ia-c-mdm  .ia-card-header { border-left-color: #7C6D3F; }
+.ia-c-cfg  .ia-card-header { border-left-color: #4A5FA8; }
+.ia-c-prg  .ia-card-header { border-left-color: #8B4A8A; }
+.ia-c-svy  .ia-card-header { border-left-color: #2B7A8A; }
+.ia-c-pog  .ia-card-header { border-left-color: #2A6B3A; }
+.ia-c-misc .ia-card-header { border-left-color: #999; }
+.new-side .ia-c-ir .ia-card-header { border-left-color: #1D6E49; }
+
+.ia-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.ia-leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+.ia-leg-sym { font-family: 'Geist Mono', monospace; font-size: 11px; width: 12px; text-align: center; }
+.ia-leg-sym.p { color: var(--new); font-weight: 600; }
+.ia-leg-sym.x { color: var(--old); font-weight: 600; }
+.ia-leg-sym.d { color: var(--muted2); }
+.ia-leg-note { margin-left: auto; font-family: 'Geist Mono', monospace; font-size: 9px; color: var(--muted2); }
+
+/* ─── Mockup image strip ─────────────────────────── */
+.mockup-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mockup-strip .img-frame { border-radius: 8px; }
+
+.mockup-wide { margin-bottom: 8px; }
+
+/* ─── Search callout ─────────────────────────────── */
+.search-callout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sc-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  background: var(--white);
+}
+
+.sc-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted2);
+  margin-bottom: 6px;
+}
+
+.sc-val {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px; color: var(--text); line-height: 1; margin-bottom: 4px;
+}
+
+.sc-val.g { color: var(--new); }
+.sc-desc { font-size: 12px; color: var(--muted); margin: 0; }
+
+/* ─── Business impact ────────────────────────────── */
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.impact-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.impact-icon { font-size: 20px; margin-bottom: 10px; }
+.impact-value { font-family: 'Instrument Serif', serif; font-size: 28px; color: var(--text); line-height: 1; margin-bottom: 6px; }
+.impact-value.green { color: var(--new); }
+.impact-desc { font-size: 12px; color: var(--muted); line-height: 1.4; margin: 0; }
+
+/* ─── Adoption quote strip ───────────────────────── */
+.adoption-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* ─── Footer ─────────────────────────────────────── */
+.cs-footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cs-footer-name { font-family: 'Instrument Serif', serif; font-size: 18px; }
+.cs-footer-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.cs-footer-links { display: flex; gap: 12px; }
+.cs-footer-links a {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px;
+  background: var(--white); transition: color 0.15s, border-color 0.15s;
+}
+.cs-footer-links a:hover { color: var(--text); border-color: var(--text); }
+
+/* ─── Animations ─────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 0.5s ease forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+/* ─── Responsive ─────────────────────────────────── */
+
+/* Tablet — iPad portrait & landscape (768px – 1024px) */
+@media (max-width: 1024px) {
+  .page { max-width: 100%; padding: 60px 40px 100px; }
+
+  h1.title { font-size: 40px; }
+
+  .pain-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .role-strip { grid-template-columns: repeat(3, 1fr); }
+
+  .stat-row { grid-template-columns: repeat(3, 1fr); }
+
+  .mockup-strip { grid-template-columns: repeat(3, 1fr); }
+
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .quote-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .search-callout { grid-template-columns: repeat(2, 1fr); }
+
+  .adoption-quotes { grid-template-columns: repeat(2, 1fr); }
+
+  /* IA comparison — keep side by side but tighten */
+  .ia-wrap { padding: 24px; }
+  .ia-comparison { grid-template-columns: 1fr 28px 1fr; }
+
+  /* Tables — allow horizontal scroll */
+  .data-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table { min-width: 480px; }
+
+  /* Tradeoff cards full width on tablet */
+  .tradeoff-label { font-size: 13px; }
+}
+
+/* iPad mini / small tablet portrait (600px – 767px) */
+@media (max-width: 767px) {
+  .page { padding: 48px 28px 88px; }
+
+  h1.title { font-size: 34px; }
+  .subtitle { font-size: 15px; }
+
+  .section { margin-bottom: 56px; }
+  .divider { margin: 48px 0; }
+
+  /* Pain points — 1 column on small tablet */
+  .pain-grid { grid-template-columns: 1fr; gap: 8px; }
+
+  /* Role strip — stack */
+  .role-strip { grid-template-columns: 1fr; }
+  .role-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .role-cell:last-child { border-bottom: none; }
+
+  /* Grids collapse to 1 col */
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .impact-grid { grid-template-columns: 1fr; }
+  .search-callout { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+  .adoption-quotes { grid-template-columns: 1fr; }
+  .mockup-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* IA — stack vertically */
+  .ia-wrap { padding: 20px 16px; }
+  .ia-comparison { grid-template-columns: 1fr; gap: 16px; }
+  .ia-spine { display: none; }
+  .ia-stat-pill { padding: 5px 10px; font-size: 11px; }
+  .ia-header h3 { font-size: 18px; }
+
+  /* Image rows */
+  .img-row.cols-2 { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .cs-footer { flex-direction: column; gap: 16px; text-align: center; }
+  .cs-footer-links { justify-content: center; }
+
+  /* Tags wrap tighter */
+  .hero-meta { gap: 6px; }
+  .tag { font-size: 10px; padding: 3px 9px; }
+
+  /* Tables scroll */
+  .data-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
+  .data-table { min-width: 500px; border-radius: 0; }
+
+  /* Tradeoff vs badge — hide on small screens to save space */
+  .tradeoff-vs { display: none; }
+}
+
+/* Mobile — phones (max 479px) */
+@media (max-width: 479px) {
+  .page { padding: 32px 16px 72px; }
+
+  h1.title { font-size: 28px; line-height: 1.15; }
+  .subtitle { font-size: 14px; }
+  h2.section-title { font-size: 22px; }
+
+  .section { margin-bottom: 48px; }
+  .divider { margin: 40px 0; }
+
+  /* Single column everything */
+  .stat-row { grid-template-columns: 1fr; }
+  .mockup-strip { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .search-callout { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+  .adoption-quotes { grid-template-columns: 1fr; }
+
+  /* Bigger touch targets for accordion headers */
+  .tradeoff-header { padding: 16px; min-height: 56px; }
+  .ia-card-header { padding: 12px 12px; min-height: 48px; }
+  .card-header { padding: 14px 14px; min-height: 48px; }
+
+  /* Stat cards full width */
+  .stat-big { font-size: 32px; }
+
+  /* IA wrap — tighter padding */
+  .ia-wrap { padding: 16px 14px; border-radius: 10px; }
+  .ia-chip { font-size: 10px; padding: 4px 8px; }
+  .ia-changes { gap: 5px; }
+
+  /* Role strip */
+  .role-cell { padding: 16px 16px; }
+  .role-value { font-size: 16px; }
+
+  /* Hero meta */
+  .hero-meta { gap: 5px; }
+  .tag { font-size: 10px; padding: 3px 8px; }
+
+  /* Pain cards */
+  .pain-card { padding: 14px 14px 16px; }
+  .pain-num { font-size: 10px; }
+  .pain-text { font-size: 12px; }
+
+  /* Quote cards */
+  .quote-card { padding: 16px 16px 18px; }
+  .quote-mark { font-size: 32px; }
+  .quote-text { font-size: 14px; }
+
+  /* Callout */
+  .callout { padding: 14px 16px; }
+  .callout p { font-size: 13px; }
+
+  /* Tradeoff */
+  .tradeoff-icon { width: 28px; height: 28px; font-size: 13px; }
+  .tradeoff-label { font-size: 13px; }
+  .tradeoff-body p { font-size: 13px; }
+
+  /* Tables */
+  .data-table th, .data-table td { padding: 10px 12px; font-size: 12px; }
+
+  /* Stats pills in hero IA section */
+  .stats-row { gap: 8px; }
+  .stat-pill { padding: 6px 12px; }
+
+  /* Image frames */
+  .img-frame { border-radius: 8px; }
+
+  /* Footer */
+  .cs-footer { margin-top: 56px; padding-top: 24px; }
+  .cs-footer-name { font-size: 16px; }
+  .cs-footer-links { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .cs-footer-links a { font-size: 11px; padding: 5px 10px; }
+
+  /* Section eyebrow */
+  .eyebrow { font-size: 10px; }
+}
+
+/* Touch devices — improve tap targets globally */
+@media (hover: none) and (pointer: coarse) {
+  .tradeoff-header,
+  .ia-card-header,
+  .card-header { min-height: 48px; }
+
+  .cs-footer-links a { padding: 8px 14px; }
+
+  /* Remove hover states that flash on tap */
+  .tradeoff-card:hover,
+  .ia-card:hover,
+  .section-card:hover { box-shadow: none; }
+}
+
+/* Prevent text size inflation on iOS */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Smooth momentum scrolling for table containers on iOS */
+.data-table-wrap { -webkit-overflow-scrolling: touch; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  HERO                                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="hero fade-up">
+  <p class="eyebrow">UX Case Study · SaaS Portal</p>
+  <h1 class="title">SaaS Portal<br>Navigation Redesign</h1>
+  <p class="subtitle">Redesigned a customer portal to eliminate navigation friction — reducing task completion time by 88% and improving portal satisfaction from 4.2 to 7.8/10.</p>
+
+  <div class="hero-meta">
+    <span class="tag">Lead UX Designer</span>
+    <span class="tag">6 Weeks</span>
+    <span class="tag">Web · SaaS Portal</span>
+    <span class="tag">Usability Research</span>
+    <span class="tag">IA Redesign</span>
+  </div>
+</div>
+
+<div class="img-row cols-1 fade-up delay-1">
+  <div class="img-frame">
+    <img src="https://framerusercontent.com/images/k2iB3voCeBfWlYwARRrMz3Q34.png" alt="Portal overview" loading="eager">
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  ROLE STRIP                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="role-strip fade-up">
+  <div class="role-cell">
+    <div class="role-label">Role</div>
+    <div class="role-value">Lead UX Designer</div>
+  </div>
+  <div class="role-cell">
+    <div class="role-label">Duration</div>
+    <div class="role-value">6 Weeks</div>
+  </div>
+  <div class="role-cell">
+    <div class="role-label">Platform</div>
+    <div class="role-value">Web (SaaS Portal)</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  THE CHALLENGE                                  -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">01 — Context</p>
+  <h2 class="section-title">The Challenge</h2>
+  <p>The Customer Portal is the operational backbone for both internal teams and external stakeholders — used daily for data management, survey configuration, program tracking, and reporting. Despite its critical role, recurring support tickets and qualitative feedback pointed to one root cause: the navigation experience was creating constant friction.</p>
+  <p>The executive goal was clear: transform the portal from a tool people grudgingly use into one they can move through efficiently — removing navigation hurdles and streamlining core workflows.</p>
+
+  <div class="pain-grid" style="margin-top:28px;">
+    <div class="pain-card">
+      <div class="pain-num">01</div>
+      <p class="pain-text">Navigation 3–4 levels deep with hierarchical dropdown — designed for learners, not power users</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">02</div>
+      <p class="pain-text">Users relied on memory instead of discoverability — some wrote module paths on paper</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">03</div>
+      <p class="pain-text">Frequent tasks took 7–10 minutes to complete due to repetitive navigation</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  USABILITY TESTING                              -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">02 — Research</p>
+  <h2 class="section-title">Findings in Usability Testing</h2>
+  <p>We conducted an unmoderated remote usability test with 5 existing users, covering 5 representative tasks. The results confirmed our hypothesis: the current navigation was failing both discovery and efficiency.</p>
+
+  <div class="data-table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Discoverability</th>
+        <th>Time on Task</th>
+        <th>Clicks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open Product Master Data</td>
+        <td><span class="pill easy">Easy</span></td>
+        <td>0m 20s</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>Open Planogram UPC Report</td>
+        <td><span class="pill diff">Difficult</span></td>
+        <td>4m 30s</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>Edit Scene Type Config (ID: 4523455)</td>
+        <td><span class="pill fail">Fail</span></td>
+        <td>10m+</td>
+        <td>20+</td>
+      </tr>
+      <tr>
+        <td>Create Program Item</td>
+        <td><span class="pill diff">Difficult</span></td>
+        <td>5m 40s</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>Create List Type Question from Library</td>
+        <td><span class="pill diff">Difficult</span></td>
+        <td>7m</td>
+        <td>10</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p>For <strong>all new users</strong>, discoverability largely failed across every single task. The existing navigation had no self-evident structure for someone unfamiliar with module names.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  USER INTERVIEWS                                -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">03 — Research</p>
+  <h2 class="section-title">User Interviews</h2>
+  <p>To understand how users actually move through the portal day-to-day, we conducted qualitative interviews. Users are predominantly power users — subject matter experts who switch between many modules repeatedly throughout the day.</p>
+
+  <div class="quote-grid">
+    <div class="quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">I have to shuffle between more than 8 modules almost every day. I basically switch about 50 times a day.</p>
+    </div>
+    <div class="quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">As a subject matter expert on Metrics, I only use the Programs List — but I have to go back and forth setting up a metric that requires Program Areas and Items.</p>
+    </div>
+    <div class="quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">I've written down all the modules and their paths so I don't waste time navigating.</p>
+    </div>
+    <div class="quote-card" style="background:var(--surface); border-style:dashed;">
+      <span class="quote-mark" style="color:var(--border);">"</span>
+      <p class="quote-text" style="color:var(--muted2); font-style:normal; font-family:'Geist',sans-serif; font-size:13px;">Key insight: users had developed workarounds (notes, bookmarks, multi-tabs) just to survive the navigation — a clear signal the system was broken.</p>
+    </div>
+  </div>
+
+  <div class="img-row cols-2">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/JxJGxk4ZDU8w0l04LxJgtYrO2o.png" alt="User navigation behaviour" loading="lazy">
+    </div>
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/Pn60XKNKYHW4xuZ0ppyuaNsPE.png" alt="Current portal state" loading="lazy">
+    </div>
+  </div>
+  <p class="img-caption">Left: user-noted module paths on paper. Right: current portal state showing hierarchy depth.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  INFORMATION ARCHITECTURE                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">04 — IA Redesign</p>
+  <h2 class="section-title">Information Architecture</h2>
+  <p>The existing IA relied on a hierarchical drill-down pattern originally designed for new and infrequent users. As the module count grew, this created compounding friction. We collected every module and sub-module, then used <strong>reverse card sorting</strong> with stakeholders to reorganize everything into a 3-level persistent structure.</p>
+  <p>Access patterns and roles were carefully factored in — different user groups see different modules based on their permissions. A collaborative spreadsheet kept stakeholders aligned throughout.</p>
+
+
+
+  <!-- ── INLINE IA COMPARISON ── -->
+  <div class="ia-wrap">
+    <div class="ia-header">
+      <h3>Before & After: Navigation Structure</h3>
+      <p>From 18+ flat top-level items to 7 purposeful sections organized around user workflows.</p>
+      <div class="ia-stats">
+        <div class="ia-stat-pill">
+          <span class="ia-num r">18+</span>
+          <span class="ia-arrow">→</span>
+          <span class="ia-num g">7</span>
+          <span class="ia-lbl">top-level sections</span>
+        </div>
+        <div class="ia-stat-pill">
+          <span class="ia-num g">+12</span>
+          <span class="ia-lbl">new modules added</span>
+        </div>
+        <div class="ia-stat-pill">
+          <span class="ia-num r">4</span>
+          <span class="ia-arrow">→</span>
+          <span class="ia-num g">3</span>
+          <span class="ia-lbl">max nav depth</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ia-changes">
+      <div class="ia-chip"><b>Consolidated</b> 18+ items → 7 sections</div>
+      <div class="ia-chip"><b>Relocated</b> Logs & Route Planning → Master Data</div>
+      <div class="ia-chip"><b>New</b> OCR, Partner, Sales Master Data</div>
+      <div class="ia-chip"><b>Elevated</b> Survey Management to first-class section</div>
+      <div class="ia-chip"><b>Deprecated</b> Vending Machine & AR admin paths</div>
+    </div>
+
+    <div class="ia-comparison">
+      <!-- OLD -->
+      <div class="old-side">
+        <div class="ia-col-head">
+          <span class="ia-badge old">Before</span>
+          <span class="ia-col-name">iRed Menu — Legacy</span>
+        </div>
+
+        <div class="ia-card ia-c-ir">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">IR Governance</span>
+            <span class="ia-card-count">5 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">IR Bounding Box Correction</div>
+            <div class="ia-item">IR Performance · IR Self Quality Check</div>
+            <div class="ia-item">Product Accuracy · Scene Report</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-mdm">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Master Data Management</span>
+            <span class="ia-card-count">25 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-l2-label">Product Master Data</div>
+            <div class="ia-item">Brand · Sub Brand · Manufacturer · Flavour</div>
+            <div class="ia-item">Product Category · Packaging Type · Selling Pack</div>
+            <div class="ia-item">Product Group · Sales Unit · Measuring Unit</div>
+            <div class="ia-item">Product Classification · Space Management</div>
+            <div class="ia-l2-label">Outlet, User & Asset</div>
+            <div class="ia-item">Customer Tier · Trade Channel · Trade Group</div>
+            <div class="ia-item">External Users · Asset Type · Assets</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-cfg collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Survey Configuration</span>
+            <span class="ia-card-count">4 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Cancel Call Reason · Price Tag Config</div>
+            <div class="ia-item">Scene Type Config · Topic-Subtopic</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-prg collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Program Management</span>
+            <span class="ia-card-count">9 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Asset / Outlet / Product Group Definitions</div>
+            <div class="ia-item">Programs · Program Items · Question Library</div>
+            <div class="ia-item">Real Time Report Setup · Planogram Library</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-misc collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Scattered Top-Level (ungrouped)</span>
+            <span class="ia-card-count">20+ items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Clarification Mgmt · Click to Win · Sales Data</div>
+            <div class="ia-item">Route Planning · Smart Device · Surveys</div>
+            <div class="ia-item">Push Notification (×7) · Logs (×6)</div>
+            <div class="ia-item">Session Re-Process · Central Localization</div>
+            <div class="ia-l2-label">Deprecated</div>
+            <div class="ia-item gone">Vending Machine Reports (×6)</div>
+            <div class="ia-item gone">AR Reports · AR Manual QC</div>
+            <div class="ia-item gone">Device Onboarding · IRed admin paths</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPINE -->
+      <div class="ia-spine">
+        <div class="ia-spine-line"></div>
+        <div class="ia-spine-node">→</div>
+        <div class="ia-spine-line"></div>
+        <div class="ia-spine-node">→</div>
+        <div class="ia-spine-line"></div>
+        <div class="ia-spine-node">→</div>
+        <div class="ia-spine-line"></div>
+        <div class="ia-spine-node">→</div>
+        <div class="ia-spine-line"></div>
+        <div class="ia-spine-node">→</div>
+        <div class="ia-spine-line"></div>
+      </div>
+
+      <!-- NEW -->
+      <div class="new-side">
+        <div class="ia-col-head">
+          <span class="ia-badge new">After</span>
+          <span class="ia-col-name">Redesigned Portal</span>
+        </div>
+
+        <div class="ia-card ia-c-mdm">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Master Data Management</span>
+            <span class="ia-card-count">40+ items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-l2-label">User · Outlet · Product · Asset Master Data</div>
+            <div class="ia-item">All existing MDM items retained</div>
+            <div class="ia-item added">Route Master Data (relocated here)</div>
+            <div class="ia-item added">API Product Master · PMD Reconciliation</div>
+            <div class="ia-item added">OCR: Menu & Receipt Data Dictionary</div>
+            <div class="ia-item added">Partner Library & Configuration</div>
+            <div class="ia-item added">Sales Actual & Sales Target</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-cfg collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Configurations</span>
+            <span class="ia-card-count">20+ items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Survey Config · Click To Win · Push Notifications</div>
+            <div class="ia-item">Central Localization</div>
+            <div class="ia-item added">Role Based · Price Mapping · IQ Model</div>
+            <div class="ia-item added">API Library · API Version Management</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-prg collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Program Management</span>
+            <span class="ia-card-count">11 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Programs · Program Items · Question Library</div>
+            <div class="ia-item">Product / Outlet / Asset Groups</div>
+            <div class="ia-item added">Metric Output Validation</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-pog collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Planogram</span>
+            <span class="ia-card-count">14 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Planogram Library · PIC TO POG · PDF TO POG</div>
+            <div class="ia-item added">UPC Gap / Match / Mapping Reports</div>
+            <div class="ia-item added">Outlet Gap Report</div>
+            <div class="ia-item added">Planogram Product Group Library & Assignment</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-svy collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Survey Management</span>
+            <span class="ia-card-count">10 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Claims Mgmt · Program Claims Review</div>
+            <div class="ia-item">Survey Review</div>
+            <div class="ia-item added">Supervisor Report</div>
+            <div class="ia-item added">Outstanding Sessions Review</div>
+            <div class="ia-item added">Manual Question Review</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-ir collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Image Recognition</span>
+            <span class="ia-card-count">13 items</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">IR Governance · IR Validation · Model Performance</div>
+            <div class="ia-item">Upload Images · Session Re-Process</div>
+          </div>
+        </div>
+
+        <div class="ia-card ia-c-misc collapsed">
+          <div class="ia-card-header" onclick="iaToggle(this)">
+            <span class="ia-card-label">Reports · Helpdesk</span>
+            <span class="ia-card-count">2 sections</span>
+            <span class="ia-chevron">▾</span>
+          </div>
+          <div class="ia-card-body">
+            <div class="ia-item">Reports — direct table view</div>
+            <div class="ia-item">Helpdesk — direct table with KPIs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ia-legend">
+      <div class="ia-leg-item"><span class="ia-leg-sym p">+</span> Newly added</div>
+      <div class="ia-leg-item"><span class="ia-leg-sym x">×</span> Deprecated</div>
+      <div class="ia-leg-item"><span class="ia-leg-sym d">–</span> Retained & reorganized</div>
+      <span class="ia-leg-note">Click sections to expand ↕</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  WIREFRAMES                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">05 — Wireframing & Testing</p>
+  <h2 class="section-title">Wireframes & Search Discovery</h2>
+  <p>Initial wireframe testing showed users still struggled with discovery — even with the improved IA. In response, we introduced a module search feature alongside the persistent navigation.</p>
+
+  <div class="img-row cols-1" style="margin-bottom:20px;">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/9J0SniaSPYE4My5tr9DzmtZYQM.png" alt="Wireframes" loading="lazy">
+    </div>
+  </div>
+  <p class="img-caption">Wireframes testing persistent nav with integrated module search</p>
+
+  <p style="margin-top:20px;">While search improved efficiency, it still took users over 10 seconds to find a module when typing only one character — because many modules share similar naming conventions, returning 47+ results for a single keystroke.</p>
+
+  <div class="search-callout">
+    <div class="sc-card">
+      <div class="sc-label">Open Planogram UPC Report</div>
+      <div class="sc-val">4m 30s</div>
+      <p class="sc-desc">Via drill-down navigation (baseline)</p>
+    </div>
+    <div class="sc-card">
+      <div class="sc-label">Same task with search (v1)</div>
+      <div class="sc-val sc-val g">0m 15s</div>
+      <p class="sc-desc">↓ 94% faster — but still not optimal with 1-char search</p>
+    </div>
+  </div>
+
+  <div class="data-table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>Task</th><th>Discoverability</th><th>Drill-Down</th><th>With Search</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open Product Master Data</td>
+        <td><span class="pill easy">Easy</span></td>
+        <td>0m 5s</td>
+        <td>0m 5s</td>
+      </tr>
+      <tr>
+        <td>Open Planogram UPC Report</td>
+        <td><span class="pill diff">Difficult</span></td>
+        <td>0m 50s</td>
+        <td><span style="color:var(--new);font-weight:500;">0m 15s ↓</span></td>
+      </tr>
+      <tr>
+        <td>Open Upload Images Manually</td>
+        <td><span class="pill diff">Difficult</span></td>
+        <td>1m 10s</td>
+        <td><span style="color:var(--new);font-weight:500;">0m 13s ↓</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  TRADE-OFFS                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">06 — Design Decisions</p>
+  <h2 class="section-title">Trade-offs & Decisions</h2>
+  <p>Three major tensions surfaced during the design process, each requiring negotiation across product, engineering, and ops leadership.</p>
+
+  <div class="tradeoff-list">
+
+    <div class="tradeoff-card">
+      <div class="tradeoff-header" onclick="tradeToggle(this)">
+        <div class="tradeoff-icon">⚡</div>
+        <span class="tradeoff-label">Speed vs. Learning</span>
+        <span class="tradeoff-vs">Search-first vs. Nav-first</span>
+        <span class="tradeoff-chevron">▾</span>
+      </div>
+      <div class="tradeoff-body">
+        <p>Product wanted to hide the navigation tree and make search primary — fastest for existing users. Ops leadership insisted new hires needed to learn the IA structure to reference it in support tickets.</p>
+        <p><strong>Decision:</strong> Dual-mode navigation with a 3-character minimum for search. This forced some engagement with the nav tree while keeping power users efficient. Validated: ~2s added to power user workflows, but new hire onboarding reduced by 40%.</p>
+        <div class="decision-chip">✓ 3-char minimum · dual-mode nav</div>
+      </div>
+    </div>
+
+    <div class="tradeoff-card collapsed">
+      <div class="tradeoff-header" onclick="tradeToggle(this)">
+        <div class="tradeoff-icon">📐</div>
+        <span class="tradeoff-label">Screen Real Estate vs. Persistent Visibility</span>
+        <span class="tradeoff-vs">280px sidebar vs. collapsed</span>
+        <span class="tradeoff-chevron">▾</span>
+      </div>
+      <div class="tradeoff-body">
+        <p>On a 1920px screen, a 280px sidebar uses 15% of horizontal space — significant for users working with dense data tables. Engineering proposed defaulting to a collapsed sidebar.</p>
+        <p>I pushed back: users were already struggling with 20+ clicks per task. Adding 2 more clicks to expand/collapse — done 50 times/day — compounds the problem by 100 extra clicks daily.</p>
+        <p><strong>Compromise:</strong> A 'slim mode' (64px icon-only sidebar) users can toggle. Analytics post-launch: 73% kept it expanded, validating the expanded default.</p>
+        <p>Business case: the 88% productivity gain outweighed the 15% screen cost by ~$500K annually.</p>
+        <div class="decision-chip">✓ Slim mode toggle · expanded by default</div>
+      </div>
+    </div>
+
+    <div class="tradeoff-card collapsed">
+      <div class="tradeoff-header" onclick="tradeToggle(this)">
+        <div class="tradeoff-icon">🗓</div>
+        <span class="tradeoff-label">Timeline vs. Scope</span>
+        <span class="tradeoff-vs">V1 core vs. full feature set</span>
+        <span class="tradeoff-chevron">▾</span>
+      </div>
+      <div class="tradeoff-body">
+        <p>Leadership wanted this shipped before Q4 onboarding of 20 new ops members. Engineering estimated 6 weeks for core nav, 12 weeks to include power-user features (favorites, recents, keyboard shortcuts).</p>
+        <p><strong>Approach:</strong> Advocated for shipping V1 with just improved IA + search, but negotiated a committed V2 roadmap 6 weeks post-launch.</p>
+        <p>V1 shipped on time. V2 scope was shaped by actual usage data — we discovered users didn't want favorites, they wanted <em>recently used modules</em> instead.</p>
+        <div class="decision-chip">✓ V1 on time · V2 data-informed</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  HI-FI MOCKUPS                                  -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">07 — Visual Design</p>
+  <h2 class="section-title">Hi-Fidelity Mockups</h2>
+  <p>The redesigned navigation features a 3-level persistent sidebar with integrated search. Search activates at 3 characters minimum, returning a focused result set. Each result displays the full navigation path — helping users orient themselves within the hierarchy.</p>
+  <p>The landing page copy reads <em>"Please select a module"</em> rather than <em>"Please search for a module"</em> — a deliberate choice to encourage users to learn the nav structure, which also helps them reference paths accurately in support tickets.</p>
+
+  <div class="mockup-strip">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/R8psuRlgIDNDBpXLSkF0hF1hE.png" alt="Sidebar mockup 1" loading="lazy">
+    </div>
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/0YvLQxjhb6FVR4OnrRoAFD4H0.png" alt="Sidebar mockup 2" loading="lazy">
+    </div>
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/2VVdUiEk.png" alt="Sidebar mockup 3" loading="lazy" onerror="this.src='https://framerusercontent.com/images/l9HwL3YQ35AYW9KwnvdVtLMEck.png'">
+    </div>
+  </div>
+
+  <div class="img-row cols-1 mockup-wide">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/ReY9bNbv71iPnKu5Qg3DdgNNM.png" alt="Full portal mockup" loading="lazy">
+    </div>
+  </div>
+
+  <div class="img-row cols-1">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/Y0xl6QoomT8Pj8Rov53fdnajRyk.png" alt="Portal full view" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  COMPONENTS                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">08 — Component Design</p>
+  <h2 class="section-title">Component Library</h2>
+  <p>Built a focused component set for the new sidebar system — icons, logo lockup, search states (empty, active, results, no-results), and menu item states (default, hover, active, collapsed/expanded).</p>
+
+  <div class="mockup-strip">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/C8FHjinII72fu58pxkTKedk2s.png" alt="Icons & Logo" loading="lazy">
+    </div>
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/fCqOa5Ao3SsldMaQqJJwSWdataA.png" alt="Search states" loading="lazy">
+    </div>
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/1h033E3uvCe6rjF6N3bu9OASGU.png" alt="Menu states" loading="lazy">
+    </div>
+  </div>
+
+  <div class="img-row cols-1">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/yGfnahk7vIPZ2ekIiq6pAIAWflc.png" alt="All menu states" loading="lazy">
+    </div>
+  </div>
+  <p class="img-caption">All menu item states — default, hover, active L1, active L2, active L3, collapsed</p>
+
+  <div class="callout" style="margin-top:24px; border-left-color: var(--yellow);">
+    <p>⚖️ <strong>Key Trade-off: Real-time Search vs. 3-Character Minimum</strong><br>
+    Engineering advocated for real-time search to feel "modern." Testing showed 1–2 character inputs returned 47+ results, creating scanning overhead. Decision: 3-character minimum with informative placeholder messaging. Result: search time reduced from 15s → 6s.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  FINAL USABILITY TESTING                        -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">09 — Validation</p>
+  <h2 class="section-title">Usability Testing — Final IA</h2>
+  <p>After raising the minimum search character count to 3 and retesting with users, we observed significant improvement in both discoverability and time on task. The combination of improved IA + 3-char search eliminated most navigation friction for returning users.</p>
+
+  <div class="data-table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>Task</th><th>Discoverability</th><th>Drill-Down</th><th>Search (3-char min)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open Survey Review</td>
+        <td><span class="pill easy">Easy</span></td>
+        <td>0m 20s</td>
+        <td><span style="color:var(--new);font-weight:500;">0m 6s ↓</span></td>
+      </tr>
+      <tr>
+        <td>Open Planogram UPC Report</td>
+        <td><span class="pill easy">Easy</span></td>
+        <td>0m 24s</td>
+        <td><span style="color:var(--new);font-weight:500;">0m 4s ↓</span></td>
+      </tr>
+      <tr>
+        <td>Open IR Self Quality Check</td>
+        <td><span class="pill easy">Easy</span></td>
+        <td>0m 18s</td>
+        <td><span style="color:var(--new);font-weight:500;">0m 7s ↓</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p>Discoverability improved significantly for returning and knowledgeable users. New users still found discovery somewhat challenging — a known trade-off acknowledged in the V2 roadmap, where contextual onboarding was prioritized.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  RESULTS                                        -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">10 — Outcomes</p>
+  <h2 class="section-title">Business Impact & Adoption</h2>
+  <p>The navigation redesign unlocked ~$553K in annual value through combined productivity gains and support cost reduction — and demonstrated how strategic UX investment translates directly to operational efficiency.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-big green">88%</div>
+      <div class="stat-desc">reduction in time on task for core workflows</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big green">67%</div>
+      <div class="stat-desc">drop in navigation-related support tickets</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big green">~$553K</div>
+      <div class="stat-desc">annual value unlocked from productivity gains</div>
+    </div>
+  </div>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">📈</div>
+      <div class="impact-value green">85%</div>
+      <p class="impact-desc">of users adopted search as their primary navigation method within 30 days of launch</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">⭐</div>
+      <div class="impact-value">4.2 → 7.8</div>
+      <p class="impact-desc">portal satisfaction score (out of 10) — measured at launch and 30 days post-launch</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🧭</div>
+      <div class="impact-value green">73%</div>
+      <p class="impact-desc">of users kept the sidebar in expanded mode, validating the expanded-default decision</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🎓</div>
+      <div class="impact-value green">40%</div>
+      <p class="impact-desc">reduction in new hire onboarding time attributed to improved IA clarity</p>
+    </div>
+  </div>
+
+  <div class="adoption-quotes">
+    <div class="quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">I can finally find what I need without asking someone.</p>
+    </div>
+    <div class="quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">The search is a game-changer — I'm done in seconds now.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  FOOTER                                         -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="cs-footer">
+  <div>
+    <div class="cs-footer-name">Sai Aditya Kuppili</div>
+    <div class="cs-footer-role">Lead UX Designer</div>
+  </div>
+  <div class="cs-footer-links">
+    <a href="https://behance.net/askleo" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/saiadityak/" target="_blank">LinkedIn</a>
+    <a href="https://saiadityak.framer.website" target="_blank">Portfolio</a>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+  function iaToggle(header) {
+    header.parentElement.classList.toggle('collapsed');
+  }
+
+  function tradeToggle(header) {
+    header.parentElement.classList.toggle('collapsed');
+  }
+
+  // Intersection observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.animationPlayState = 'running';
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section, .role-strip, .pain-grid').forEach(el => {
+    el.style.opacity = '0';
+    el.style.animation = 'fadeUp 0.5s ease forwards';
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
