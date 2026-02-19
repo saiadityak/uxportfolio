@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Rewards App Redesign · Sai Aditya Kuppili</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* ─── Tokens ─────────────────────────────────────── */
+:root {
+  --bg:           #FAFAF8;
+  --white:        #FFFFFF;
+  --surface:      #F4F3F0;
+  --border:       #E8E6E1;
+  --border-light: #F0EDE8;
+  --text:         #1A1916;
+  --text-2:       #3D3C38;
+  --muted:        #78766E;
+  --muted2:       #ABA9A1;
+  --accent:       #2B5EA7;
+  --accent-bg:    #EEF3FC;
+  --accent-border:#C3D4F0;
+  --green:        #1D6E49;
+  --green-bg:     #EEF6F1;
+  --green-border: #A8D8BC;
+  --yellow:       #92400E;
+  --yellow-bg:    #FEF3C7;
+  --yellow-border:#FDE68A;
+  --red:          #B84035;
+  --red-bg:       #FDF1EE;
+  --red-border:   #EEC9BF;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─────────────────────────────────────── */
+.page { max-width: 800px; margin: 0 auto; padding: 80px 32px 120px; }
+
+/* ─── Typography ─────────────────────────────────── */
+.eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+h1.title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+
+h2.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+h3.sub-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+p { color: var(--text-2); margin-bottom: 16px; line-height: 1.7; }
+p:last-child { margin-bottom: 0; }
+
+/* ─── Section spacing ────────────────────────────── */
+.section { margin-bottom: 80px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 64px 0; }
+
+/* ─── Hero ───────────────────────────────────────── */
+.hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+
+.tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--white);
+}
+
+.read-time {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+/* ─── Role strip ─────────────────────────────────── */
+.role-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  margin-bottom: 40px;
+}
+
+.role-cell { padding: 20px 22px; border-right: 1px solid var(--border); }
+.role-cell:last-child { border-right: none; }
+.role-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 6px; }
+.role-value { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--text); }
+
+/* ─── Challenge cards ────────────────────────────── */
+.challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 32px; }
+
+.challenge-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 20px; }
+.challenge-num { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted2); margin-bottom: 8px; }
+.challenge-text { font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0; }
+
+/* ─── Data tables ────────────────────────────────── */
+.data-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.data-table-wrap::-webkit-scrollbar { display: none; }
+.data-table-wrap .data-table { margin-bottom: 0; border-radius: 0; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.data-table thead tr { background: var(--surface); }
+
+.data-table th {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-light); color: var(--text-2); vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg); }
+
+/* SUS score color indicators */
+.sus { font-family: 'Geist Mono', monospace; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+.sus.high  { background: var(--green-bg);  color: var(--green);  }
+.sus.mid   { background: var(--yellow-bg); color: var(--yellow); }
+.sus.low   { background: var(--red-bg);    color: var(--red);    }
+
+.rate { font-family: 'Geist Mono', monospace; font-weight: 500; }
+.rate.full { color: var(--green); }
+.rate.pass { color: var(--yellow); }
+.rate.fail { color: var(--red); }
+
+/* ─── Callout ────────────────────────────────────── */
+.callout {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.callout p { font-size: 13.5px; color: var(--text-2); margin: 0; }
+.callout strong { color: var(--text); }
+
+/* ─── Images ─────────────────────────────────────── */
+.img-row { display: grid; gap: 10px; margin-bottom: 28px; }
+.img-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.img-row.cols-1 { grid-template-columns: 1fr; }
+.img-frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+.img-frame img { width: 100%; display: block; }
+.img-caption { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--muted2); text-align: center; margin-top: 8px; }
+
+/* ─── User interviews ────────────────────────────── */
+.interview-accordion { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+
+.interview-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+.interview-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px; cursor: pointer; user-select: none;
+}
+.interview-header:hover { background: var(--bg); }
+
+.interview-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-bg); border: 1px solid var(--accent-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif; font-size: 16px; color: var(--accent);
+  flex-shrink: 0;
+}
+
+.interview-name { font-size: 14px; font-weight: 600; flex: 1; }
+.interview-tag { font-size: 11px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; }
+.interview-chevron { color: var(--muted2); font-size: 11px; transition: transform 0.18s; }
+
+.interview-card.collapsed .interview-chevron { transform: rotate(-90deg); }
+.interview-card.collapsed .interview-body { display: none; }
+
+.interview-body { padding: 0 18px 18px; border-top: 1px solid var(--border-light); }
+
+.interview-section { margin-top: 16px; }
+.interview-section-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted2); margin-bottom: 6px; }
+.interview-section p { font-size: 13px; color: var(--text-2); margin-bottom: 6px; }
+.interview-section p:last-child { margin-bottom: 0; }
+
+/* ─── Survey results ─────────────────────────────── */
+.survey-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 28px; }
+
+.survey-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+.survey-q { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; }
+.survey-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.survey-bar-wrap { flex: 1; height: 6px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+.survey-bar { height: 100%; border-radius: 3px; background: var(--accent); transition: width 0.8s ease; }
+.survey-bar.green { background: var(--green); }
+.survey-pct { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); width: 32px; text-align: right; flex-shrink: 0; }
+.survey-label { font-size: 12px; color: var(--text-2); flex: 1; }
+
+/* ─── Persona card ───────────────────────────────── */
+.persona-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.persona-top {
+  background: var(--accent-bg);
+  border-bottom: 1px solid var(--accent-border);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.persona-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif; font-size: 24px; color: var(--white);
+  flex-shrink: 0;
+}
+
+.persona-name { font-family: 'Instrument Serif', serif; font-size: 22px; color: var(--text); }
+.persona-meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.persona-body { padding: 24px 28px; }
+
+.persona-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.persona-col-label { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; }
+
+.persona-item { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: 13px; color: var(--text-2); }
+.persona-item::before { content: '–'; color: var(--muted2); flex-shrink: 0; }
+
+/* ─── Journey steps ──────────────────────────────── */
+.journey { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; position: relative; }
+.journey::before { content: ''; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 1px; background: var(--border); }
+
+.journey-step { display: flex; gap: 16px; align-items: flex-start; padding: 4px 0 20px; position: relative; }
+
+.journey-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--white); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--muted);
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+
+.journey-content { padding-top: 8px; flex: 1; }
+.journey-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.journey-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+/* ─── Findings list ──────────────────────────────── */
+.findings-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+
+.finding-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+.finding-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; cursor: pointer; user-select: none;
+}
+.finding-header:hover { background: var(--bg); }
+
+.finding-num {
+  font-family: 'Geist Mono', monospace; font-size: 11px;
+  color: var(--muted2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 2px 8px; flex-shrink: 0;
+}
+
+.finding-label { font-size: 13.5px; font-weight: 600; flex: 1; }
+.finding-chevron { color: var(--muted2); font-size: 11px; transition: transform 0.18s; }
+.finding-card.collapsed .finding-chevron { transform: rotate(-90deg); }
+.finding-card.collapsed .finding-body { display: none; }
+.finding-body { padding: 0 18px 16px; border-top: 1px solid var(--border-light); }
+.finding-body p { font-size: 13px; color: var(--muted); margin-top: 12px; margin-bottom: 6px; }
+.finding-body strong { color: var(--text-2); }
+
+.reco-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--green-bg); border: 1px solid var(--green-border);
+  color: var(--green); font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 20px; margin-top: 8px;
+}
+
+/* ─── Results stats ──────────────────────────────── */
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
+
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 20px 22px; text-align: center; }
+.stat-big { font-family: 'Instrument Serif', serif; font-size: 40px; line-height: 1; margin-bottom: 6px; }
+.stat-big.green { color: var(--green); }
+.stat-big.blue  { color: var(--accent); }
+.stat-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* ─── Recommendations grid ───────────────────────── */
+.reco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 28px; }
+.reco-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; }
+.reco-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.reco-text { font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0; }
+
+/* ─── Quote cards ────────────────────────────────── */
+.quote-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 22px;
+}
+.quote-mark { font-family: 'Instrument Serif', serif; font-size: 40px; line-height: 1; color: var(--border); margin-bottom: 8px; display: block; }
+.quote-text { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 15px; color: var(--text-2); line-height: 1.55; margin: 0; }
+
+/* ─── Footer ─────────────────────────────────────── */
+.cs-footer {
+  margin-top: 80px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cs-footer-name { font-family: 'Instrument Serif', serif; font-size: 18px; }
+.cs-footer-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.cs-footer-links { display: flex; gap: 12px; }
+.cs-footer-links a {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px;
+  background: var(--white); transition: color 0.15s, border-color 0.15s;
+}
+.cs-footer-links a:hover { color: var(--text); border-color: var(--text); }
+
+/* ─── Animations ─────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease forwards; opacity: 0; }
+
+/* ─── Responsive: Tablet (≤1024px) ─────────────── */
+@media (max-width: 1024px) {
+  .page { max-width: 100%; padding: 60px 40px 100px; }
+  h1.title { font-size: 40px; }
+}
+
+/* ─── Responsive: iPad portrait / small tablet (≤767px) ── */
+@media (max-width: 767px) {
+  .page { padding: 48px 28px 88px; }
+  h1.title { font-size: 34px; }
+  .subtitle { font-size: 15px; }
+  .section { margin-bottom: 56px; }
+  .divider { margin: 48px 0; }
+
+  .challenge-grid { grid-template-columns: 1fr; }
+  .persona-cols { grid-template-columns: 1fr; gap: 16px; }
+  .survey-grid { grid-template-columns: 1fr; }
+  .reco-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .img-row.cols-2 { grid-template-columns: 1fr; }
+
+  .role-strip { grid-template-columns: 1fr; }
+  .role-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .role-cell:last-child { border-bottom: none; }
+
+  .cs-footer { flex-direction: column; gap: 16px; text-align: center; }
+  .cs-footer-links { justify-content: center; }
+}
+
+/* ─── Responsive: Mobile (≤479px) ────────────────── */
+@media (max-width: 479px) {
+  .page { padding: 32px 16px 72px; }
+  h1.title { font-size: 28px; line-height: 1.15; }
+  .subtitle { font-size: 14px; }
+  h2.section-title { font-size: 22px; }
+  .section { margin-bottom: 48px; }
+  .divider { margin: 40px 0; }
+
+  .stat-row { grid-template-columns: 1fr; }
+  .challenge-grid { grid-template-columns: 1fr; }
+  .reco-grid { grid-template-columns: 1fr; }
+  .survey-grid { grid-template-columns: 1fr; }
+
+  .role-cell { padding: 16px 16px; }
+  .role-value { font-size: 16px; }
+
+  .interview-header { padding: 14px 14px; min-height: 52px; }
+  .finding-header { padding: 14px 14px; min-height: 52px; }
+
+  .persona-top { padding: 18px 18px; flex-direction: column; gap: 12px; text-align: center; }
+  .persona-body { padding: 18px 18px; }
+  .persona-cols { gap: 12px; }
+
+  .stat-big { font-size: 36px; }
+
+  .data-table th, .data-table td { padding: 10px 12px; font-size: 12px; }
+
+  .cs-footer { margin-top: 56px; padding-top: 24px; }
+  .cs-footer-links { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .cs-footer-links a { font-size: 11px; padding: 5px 10px; }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+  .interview-header,
+  .finding-header { min-height: 52px; }
+  .interview-card:hover .interview-header,
+  .finding-card:hover .finding-header { background: inherit; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  HERO                                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="hero fade-up">
+  <p class="eyebrow">UX Case Study · Mobile App</p>
+  <h1 class="title">Redesign of Enterprise<br>Rewards App</h1>
+  <p class="subtitle">Click and Reward is a mobile app for store owners who capture merchandised assets and win rewards — discounts and freebies on their next lot order based on merchandising alignment with business goals.</p>
+
+  <div class="hero-meta">
+    <span class="tag">Sole UX Designer</span>
+    <span class="tag">12 Weeks</span>
+    <span class="tag">Mobile App</span>
+    <span class="tag">Enterprise · B2B</span>
+    <span class="tag">Usability Research</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  ROLE STRIP                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="role-strip fade-up">
+  <div class="role-cell">
+    <div class="role-label">Role</div>
+    <div class="role-value">Sole UX Designer</div>
+  </div>
+  <div class="role-cell">
+    <div class="role-label">Duration</div>
+    <div class="role-value">12 Weeks</div>
+  </div>
+  <div class="role-cell">
+    <div class="role-label">Process</div>
+    <div class="role-value">Discover → Define → Prototype → Validate</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  CHALLENGE                                      -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">01 — Context</p>
+  <h2 class="section-title">The Challenge</h2>
+  <p>Although bottlers were actively promoting the app and encouraging merchandisers to install it, user engagement remained critically low despite the app's clear benefits. The business was struggling to manage merchandising across remote European locations — directly impacting approximately 5% of sales.</p>
+
+  <div class="challenge-grid" style="margin-top:28px;">
+    <div class="challenge-card">
+      <div class="challenge-num">01</div>
+      <p class="challenge-text">Low user engagement despite active promotion by bottlers and clear reward incentives</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">02</div>
+      <p class="challenge-text">Inability to manage merchandising across remote locations — ~5% sales impact</p>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">03</div>
+      <p class="challenge-text">Unclear instructions and opaque scoring system causing user frustration and drop-off</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  DISCOVERY                                      -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">02 — Discovery</p>
+  <h2 class="section-title">Research Approach</h2>
+  <p>Real users were store owners and merchandisers in remote European locations. In-person testing wasn't possible, so we set up remote usability sessions over Microsoft Teams — recording each call while participants used the app live on their own devices.</p>
+  <p>Each session covered 5 tasks and ran 30–40 minutes with 5 users. We measured task success rate, time on task, total clicks, and System Usability Scale (SUS) score.</p>
+
+  <div class="callout">
+    <p><strong>Tasks assigned:</strong> Sign Up · Capture Scene & Submit · Check Best Result & Return to Home · Update Profile · Check Result Image & SKU Tab</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  USABILITY METRICS                              -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">03 — Usability Testing</p>
+  <h2 class="section-title">Usability Test Metrics</h2>
+  <p>All values are averages across 5 users. SUS scores above 80 are considered good; below 60 indicate significant usability problems.</p>
+
+  <div class="data-table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Success Rate</th>
+        <th>Time on Task</th>
+        <th>Clicks</th>
+        <th>SUS Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sign Up</td>
+        <td><span class="rate full">100%</span></td>
+        <td>3 min</td>
+        <td>5</td>
+        <td><span class="sus high">94</span></td>
+      </tr>
+      <tr>
+        <td>Capture Scene & Submit</td>
+        <td><span class="rate pass">80%</span></td>
+        <td>5 min</td>
+        <td>12</td>
+        <td><span class="sus mid">76</span></td>
+      </tr>
+      <tr>
+        <td>Check Best Result & Go to Home</td>
+        <td><span class="rate pass">60%</span></td>
+        <td>4 min</td>
+        <td>6</td>
+        <td><span class="sus mid">62</span></td>
+      </tr>
+      <tr>
+        <td>Update Profile & Check Details</td>
+        <td><span class="rate full">100%</span></td>
+        <td>5 min</td>
+        <td>10</td>
+        <td><span class="sus high">85</span></td>
+      </tr>
+      <tr>
+        <td>Check Result Image & SKU Tab</td>
+        <td><span class="rate fail">40%</span></td>
+        <td>5 min</td>
+        <td>20</td>
+        <td><span class="sus low">38</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout" style="border-left-color: var(--red);">
+    <p>The <strong>Check Result Image & SKU Tab</strong> task had a 40% success rate and a SUS score of 38 — well below the acceptable threshold. This became the primary redesign focus.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  QUALITATIVE STUDY                              -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">04 — Qualitative Research</p>
+  <h2 class="section-title">User Interviews</h2>
+  <p>We interviewed 3 users in depth to understand their daily context, motivations, and frustrations with the app. Common patterns emerged across all three around clarity of instructions, scoring transparency, and reward accessibility.</p>
+
+  <div class="interview-accordion">
+
+    <div class="interview-card">
+      <div class="interview-header" onclick="intToggle(this)">
+        <div class="interview-avatar">U1</div>
+        <span class="interview-name">User 1 — Frequent Rewards App User</span>
+        <span class="interview-tag">Power User</span>
+        <span class="interview-chevron">▾</span>
+      </div>
+      <div class="interview-body">
+        <div class="interview-section">
+          <div class="interview-section-label">Experience</div>
+          <p>Heard about the app from a friend. Opens it while out to capture assets. Waits for score results.</p>
+          <p>Finds the interface clean and easy to navigate, but often unsure if assets were captured correctly — wishes for clearer in-context feedback.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Pain Points</div>
+          <p>Hasn't earned many rewards — difficulty achieving high enough scores. Wants more variety in reward options.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Key Requests</div>
+          <p>More guidance for accurate capture · Progress tracker · Leaderboard to compare with other users</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-card collapsed">
+      <div class="interview-header" onclick="intToggle(this)">
+        <div class="interview-avatar">U2</div>
+        <span class="interview-name">User 2 — New to Rewards Apps</span>
+        <span class="interview-tag">Casual User</span>
+        <span class="interview-chevron">▾</span>
+      </div>
+      <div class="interview-body">
+        <div class="interview-section">
+          <div class="interview-section-label">Experience</div>
+          <p>Found the app in the store while browsing reward apps. Finds basic capture straightforward, but scoring system is opaque and confusing.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Pain Points</div>
+          <p>Doesn't understand how the scoring system works. Difficult to achieve scores high enough for rewards — discouraging.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Key Requests</div>
+          <p>More transparency around scoring · More frequent low-barrier reward opportunities · Clearer visual prompts during capture</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-card collapsed">
+      <div class="interview-header" onclick="intToggle(this)">
+        <div class="interview-avatar">U3</div>
+        <span class="interview-name">User 3 — Avid Rewards Collector</span>
+        <span class="interview-tag">Engaged User</span>
+        <span class="interview-chevron">▾</span>
+      </div>
+      <div class="interview-body">
+        <div class="interview-section">
+          <div class="interview-section-label">Experience</div>
+          <p>Actively seeks reward apps. Finds capture easy but is sometimes unsure if assets were captured correctly — leads to frustration and resubmission.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Pain Points</div>
+          <p>Has earned some rewards but struggles to reach higher-value tiers. Finds navigation unintuitive in certain flows.</p>
+        </div>
+        <div class="interview-section">
+          <div class="interview-section-label">Key Requests</div>
+          <p>Better capture guidance · Progress tracker to see performance vs. peers · More intuitive navigation structure</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  SURVEY RESULTS                                 -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">05 — Survey</p>
+  <h2 class="section-title">Survey Results</h2>
+  <p>Alongside qualitative interviews, a structured survey was distributed to a broader user base. Key findings below.</p>
+
+  <div class="survey-grid">
+    <div class="survey-card">
+      <div class="survey-q">How did you hear about the app?</div>
+      <div class="survey-item">
+        <span class="survey-label">Client Setup</span>
+        <div class="survey-bar-wrap"><div class="survey-bar green" style="width:98%"></div></div>
+        <span class="survey-pct">98%</span>
+      </div>
+      <div class="survey-item">
+        <span class="survey-label">App store</span>
+        <div class="survey-bar-wrap"><div class="survey-bar" style="width:1%"></div></div>
+        <span class="survey-pct">1%</span>
+      </div>
+      <div class="survey-item">
+        <span class="survey-label">Other</span>
+        <div class="survey-bar-wrap"><div class="survey-bar" style="width:1%"></div></div>
+        <span class="survey-pct">1%</span>
+      </div>
+    </div>
+
+    <div class="survey-card">
+      <div class="survey-q">Motivation to download?</div>
+      <div class="survey-item">
+        <span class="survey-label">Earn rewards</span>
+        <div class="survey-bar-wrap"><div class="survey-bar green" style="width:50%"></div></div>
+        <span class="survey-pct">50%</span>
+      </div>
+      <div class="survey-item">
+        <span class="survey-label">Unique concept</span>
+        <div class="survey-bar-wrap"><div class="survey-bar" style="width:30%"></div></div>
+        <span class="survey-pct">30%</span>
+      </div>
+      <div class="survey-item">
+        <span class="survey-label">Curiosity</span>
+        <div class="survey-bar-wrap"><div class="survey-bar" style="width:20%"></div></div>
+        <span class="survey-pct">20%</span>
+      </div>
+    </div>
+
+    <div class="survey-card">
+      <div class="survey-q">Overall usability rating</div>
+      <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+        <span style="font-family:'Instrument Serif',serif; font-size:48px; color:var(--red); line-height:1;">2.8</span>
+        <span style="font-size:13px; color:var(--muted);">out of 5</span>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px; margin-bottom:0;">Below acceptable threshold. Signals systemic usability issues requiring structural redesign.</p>
+    </div>
+
+    <div class="survey-card">
+      <div class="survey-q">Earned rewards so far?</div>
+      <div class="survey-item" style="margin-top:8px;">
+        <span class="survey-label">Yes</span>
+        <div class="survey-bar-wrap"><div class="survey-bar green" style="width:60%"></div></div>
+        <span class="survey-pct">60%</span>
+      </div>
+      <div class="survey-item">
+        <span class="survey-label">No</span>
+        <div class="survey-bar-wrap"><div class="survey-bar" style="width:40%"></div></div>
+        <span class="survey-pct">40%</span>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-top:10px; margin-bottom:0;">Common rewards: discounts and gift cards. Satisfaction varied — users wanted more variety.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Key insight:</strong> 98% of users came via client setup — not organic discovery. Engagement and motivation must be built into the app experience itself, not assumed from external promotion.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  PERSONA                                        -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">06 — Define</p>
+  <h2 class="section-title">User Persona</h2>
+
+  <div class="persona-card">
+    <div class="persona-top">
+      <div class="persona-avatar">M</div>
+      <div>
+        <div class="persona-name">Maria Gonzalez</div>
+        <div class="persona-meta">35 · Store Owner · Bustling neighbourhood convenience store</div>
+      </div>
+    </div>
+    <div class="persona-body">
+      <div class="persona-cols">
+        <div>
+          <div class="persona-col-label">Goals</div>
+          <div class="persona-item">Optimize store operations to save time and resources</div>
+          <div class="persona-item">Provide excellent customer experience</div>
+          <div class="persona-item">Reduce procurement costs via rewards</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Challenges</div>
+          <div class="persona-item">Stretched thin across multiple daily responsibilities</div>
+          <div class="persona-item">Inventory management during peak hours</div>
+          <div class="persona-item">Competition from nearby stores</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Pain Points with App</div>
+          <div class="persona-item">Struggles to capture clear images during busy periods</div>
+          <div class="persona-item">Can't dedicate consistent time to the rewards program</div>
+          <div class="persona-item">Confused by unclear instructions and redemption process</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Needs</div>
+          <div class="persona-item">Simple, intuitive interface — usable during a busy shift</div>
+          <div class="persona-item">Fast capture and seamless submission flow</div>
+          <div class="persona-item">Clear, concise instructions at every step</div>
+          <div class="persona-item">Tangible rewards that directly benefit the business</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  EMPATHY MAP                                    -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">07 — Empathy Map</p>
+  <h2 class="section-title">Understanding Maria's World</h2>
+  <p>The empathy map consolidated qualitative data from all 3 user interviews and the survey into a unified view of what users say, think, do, and feel while using the app.</p>
+
+  <div class="img-row cols-1">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/ftFB6MtUkz6fTnKCCQwS03OaNA.png" alt="Empathy Map" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  USER JOURNEY                                   -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">08 — User Journey</p>
+  <h2 class="section-title">Maria's Journey with the App</h2>
+  <p>Mapping Maria's day-to-day interaction with the app revealed the key touchpoints, emotions, and friction points across the full reward cycle.</p>
+
+  <div class="journey">
+    <div class="journey-step">
+      <div class="journey-num">01</div>
+      <div class="journey-content">
+        <div class="journey-title">Preparing for the Day</div>
+        <p class="journey-desc">Reviews inventory, creates restocking list including cooler beverages — creates the context for app usage.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">02</div>
+      <div class="journey-content">
+        <div class="journey-title">Opening the App</div>
+        <p class="journey-desc">While restocking, opens the app and selects the asset capture option. Follows prompts to ensure clear, accurate photos.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">03</div>
+      <div class="journey-content">
+        <div class="journey-title">Submitting Asset Images</div>
+        <p class="journey-desc">Uploads captured images through the submission flow. Double-checks before finalising — anxiety point due to unclear validation feedback.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">04</div>
+      <div class="journey-content">
+        <div class="journey-title">Reviewing Rewards</div>
+        <p class="journey-desc">Navigates to rewards section to check progress. Reviews available incentives — discounts and promotional items.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">05</div>
+      <div class="journey-content">
+        <div class="journey-title">Earning & Redeeming</div>
+        <p class="journey-desc">Receives in-app notification of earned reward. Follows redemption instructions to apply discount at supplier checkout.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-num">06</div>
+      <div class="journey-content">
+        <div class="journey-title">Reflecting on the Experience</div>
+        <p class="journey-desc">Considers incorporating the app into daily routine. Decides whether the value justifies the effort — critical retention moment.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  INFORMATION ARCHITECTURE                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">09 — IA & Design</p>
+  <h2 class="section-title">Information Architecture</h2>
+  <p>After completing user research and analyzing insights, we organized all features and configurations required for the redesigned user flow into a comprehensive IA covering all app categories and their relationships.</p>
+
+  <div class="img-row cols-1">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/esb9Jv1cPzf8kq2djlxYdrVnfs.png" alt="Information Architecture diagram" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  DESIGN GUIDE                                   -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">10 — Design System</p>
+  <h2 class="section-title">Design Guide</h2>
+  <p>A focused design guide was established before moving into hi-fidelity — covering typography, colour tokens, spacing, component states, and iconography to ensure consistency across all screens.</p>
+
+  <div class="img-row cols-1">
+    <div class="img-frame">
+      <img src="https://framerusercontent.com/images/vcVXJo1TIBq9ZrV0yvDLHqHHRY8.png" alt="Design guide" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  USER TESTING & FINDINGS                        -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">11 — Prototype Testing</p>
+  <h2 class="section-title">User Testing & Opportunities</h2>
+  <p>Prototype testing sessions with a diverse group — store owners, managers, and inventory staff — surfaced specific usability strengths and actionable improvement areas across 8 functional categories.</p>
+
+  <div class="findings-list">
+
+    <div class="finding-card">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">01</span>
+        <span class="finding-label">Onboarding Experience</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Participants found the onboarding process <strong>intuitive and easy to follow</strong>. A few users suggested adding more visual cues or tooltips for additional guidance during initial setup.</p>
+        <span class="reco-chip">✓ Add contextual tooltips to onboarding</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">02</span>
+        <span class="finding-label">Asset Capture</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Users reported high satisfaction with asset capture — praising its <strong>simplicity and effectiveness</strong>. Clear prompts helped users capture accurately, though some noted image recognition accuracy needed improvement.</p>
+        <span class="reco-chip">✓ Improve image recognition accuracy</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">03</span>
+        <span class="finding-label">Redeeming Rewards</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>No major issues with redeeming rewards — the process was <strong>straightforward and seamless</strong>. Users suggested streamlining reward selection and providing more detailed information about redemption options.</p>
+        <span class="reco-chip">✓ Streamline reward selection flow</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">04</span>
+        <span class="finding-label">Navigation & Usability</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Navigation found <strong>intuitive overall</strong>, but a few participants suggested organizing the navigation menu more logically for improved accessibility to key features.</p>
+        <span class="reco-chip">✓ Reorganize navigation menu hierarchy</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">05</span>
+        <span class="finding-label">Notifications</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Users appreciated notification management but noted <strong>occasional delivery delays</strong>. Reliability of the notification system needs improvement.</p>
+        <span class="reco-chip">✓ Improve notification delivery reliability</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">06</span>
+        <span class="finding-label">Profile Management</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Profile section was <strong>easy to use</strong>. Users requested additional customization options for notification settings and account preferences.</p>
+        <span class="reco-chip">✓ Add notification preference controls</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">07</span>
+        <span class="finding-label">Search Functionality</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>Search was effective for finding outlets and products. Users suggested <strong>adding filters and sorting options</strong> to refine results further.</p>
+        <span class="reco-chip">✓ Add filters & sort to search</span>
+      </div>
+    </div>
+
+    <div class="finding-card collapsed">
+      <div class="finding-header" onclick="findToggle(this)">
+        <span class="finding-num">08</span>
+        <span class="finding-label">Camera Functionality</span>
+        <span class="finding-chevron">▾</span>
+      </div>
+      <div class="finding-body">
+        <p>No difficulty using the camera feature. <strong>Clear instructions and visual feedback</strong> helped users complete capture efficiently. No issues recorded.</p>
+        <span class="reco-chip">✓ Maintain current camera UX patterns</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  RECOMMENDATIONS                                -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">12 — Recommendations</p>
+  <h2 class="section-title">Design Recommendations</h2>
+  <p>Based on the full research and testing cycle, six prioritized improvements were proposed to the product team.</p>
+
+  <div class="reco-grid">
+    <div class="reco-card"><div class="reco-icon">🎯</div><p class="reco-text">Improve image recognition accuracy to ensure valid asset capture results and reduce resubmissions</p></div>
+    <div class="reco-card"><div class="reco-icon">🎁</div><p class="reco-text">Streamline reward selection and provide clearer information about redemption options and tiers</p></div>
+    <div class="reco-card"><div class="reco-icon">🧭</div><p class="reco-text">Reorganize the navigation menu for improved logical flow and accessibility to key features</p></div>
+    <div class="reco-card"><div class="reco-icon">🔔</div><p class="reco-text">Enhance notification delivery reliability to ensure timely, dependable alerts for earned rewards</p></div>
+    <div class="reco-card"><div class="reco-icon">⚙️</div><p class="reco-text">Add customization options for notification settings and account preferences in profile section</p></div>
+    <div class="reco-card"><div class="reco-icon">🔍</div><p class="reco-text">Add filters and sorting options to search results for faster outlet and product discovery</p></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  RESULTS                                        -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">13 — Outcomes</p>
+  <h2 class="section-title">Results</h2>
+  <p>The redesigned app features a clean, clutter-free interface that makes it significantly easier for users to navigate, capture assets, and access rewards — validated through post-launch metrics.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-big green">35%</div>
+      <div class="stat-desc">increase in new user adoption from improved onboarding process</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big green">25%</div>
+      <div class="stat-desc">increase in user retention from personalization and customization options</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-big blue">84%</div>
+      <div class="stat-desc">increase in time spent in-app after redesign</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>The addition of personalization and customization options — combined with clearer onboarding and a restructured rewards flow — directly drove engagement improvements within the first 30 days post-launch.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  FOOTER                                         -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="cs-footer">
+  <div>
+    <div class="cs-footer-name">Sai Aditya Kuppili</div>
+    <div class="cs-footer-role">Sole UX Designer · Enterprise Rewards App</div>
+  </div>
+  <div class="cs-footer-links">
+    <a href="https://behance.net/askleo" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/saiadityak/" target="_blank">LinkedIn</a>
+    <a href="https://saiadityak.framer.website" target="_blank">Portfolio</a>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+  function intToggle(header)  { header.parentElement.classList.toggle('collapsed'); }
+  function findToggle(header) { header.parentElement.classList.toggle('collapsed'); }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section, .role-strip, .challenge-grid, .stat-row').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
