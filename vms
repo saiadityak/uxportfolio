@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VMS Composites | Premium GRP & Portable Solutions UAE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Exo+2:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --carbon-1: #0A0A0A;
+    --carbon-2: #111111;
+    --carbon-3: #181818;
+    --carbon-4: #222222;
+    --carbon-5: #2E2E2E;
+    --silver-dark: #4A4A4A;
+    --silver-mid: #7A7A7A;
+    --silver: #A8A8A8;
+    --silver-light: #C8C8C8;
+    --silver-bright: #E0E0E0;
+    --chrome: #D4D4D4;
+    --white: #F0F0F0;
+    --accent: #8B9EAE;
+    --accent-bright: #B8CDD8;
+    --red: #C0392B;
+    --red-bright: #E74C3C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--carbon-1);
+    color: var(--white);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── CARBON FIBER TEXTURE ─── */
+  .carbon-bg {
+    background-color: var(--carbon-2);
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.015) 0px,
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.015) 0px,
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+  }
+
+  .carbon-deep {
+    background-color: var(--carbon-1);
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.012) 0px,
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.012) 0px,
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+  }
+
+  /* ─── CURSOR ─── */
+  .cursor-dot, .cursor-ring {
+    position: fixed; pointer-events: none; z-index: 10000;
+    transform: translate(-50%,-50%);
+  }
+  .cursor-dot { width:5px; height:5px; background: var(--silver-bright); border-radius:50%; }
+  .cursor-ring {
+    width: 28px; height: 28px;
+    border: 1px solid rgba(200,200,200,0.4);
+    border-radius: 50%;
+    transition: width 0.2s, height 0.2s, border-color 0.2s;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0;
+    z-index: 1000;
+    padding: 0 60px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Inline SVG VMS logo fallback */
+  .vms-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .vms-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .vms-text-group { display: flex; flex-direction: column; line-height: 1; }
+  .vms-vms {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    background: linear-gradient(135deg, #888 0%, #ddd 40%, #aaa 60%, #eee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .vms-composites {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--silver-mid);
+    margin-top: -2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--silver-bright); }
+
+  .nav-cta {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--silver-dark);
+    padding: 10px 28px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--silver-dark), var(--carbon-5));
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+  }
+  .nav-cta:hover { border-color: var(--silver); }
+  .nav-cta:hover::before { transform: translateX(0); }
+  .nav-cta span { position: relative; z-index: 1; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Carbon weave hero bg */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-color: #0C0C0C;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 5px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 5px);
+  }
+
+  /* Radial spotlight from left */
+  .hero-spotlight {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at -10% 50%, rgba(180,190,200,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 110% 20%, rgba(150,160,170,0.04) 0%, transparent 50%);
+  }
+
+  /* Diagonal rule */
+  .hero-diagonal {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 55%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(180,180,180,0.15) 30%, rgba(180,180,180,0.15) 70%, transparent 100%);
+    transform: rotate(8deg);
+    transform-origin: center;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 100px 100px;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px 8px 8px;
+    border: 1px solid rgba(180,180,180,0.2);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--red-bright);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-badge-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(56px, 7vw, 100px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+
+  .hero-title .line-1 { display: block; color: var(--silver-bright); }
+  .hero-title .line-2 {
+    display: block;
+    background: linear-gradient(90deg, #888 0%, #ddd 35%, #bbb 65%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title .line-3 {
+    display: block;
+    font-weight: 300;
+    font-size: 0.55em;
+    letter-spacing: 6px;
+    color: var(--silver-mid);
+    margin-top: 8px;
+    -webkit-text-fill-color: initial;
+    background: none;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--silver-mid);
+    max-width: 480px;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.65s forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--carbon-1);
+    background: linear-gradient(135deg, var(--silver-light) 0%, var(--chrome) 50%, var(--silver-light) 100%);
+    padding: 16px 40px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: color 0.3s;
+  }
+  .btn-ghost::after {
+    content: '→';
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .btn-ghost:hover { color: var(--silver-bright); }
+  .btn-ghost:hover::after { transform: translateX(6px); }
+
+  /* Hero right panels */
+  .hero-panels {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 42%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2px;
+    padding: 80px 0 80px 0;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.6s forwards;
+  }
+
+  .hero-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-panel-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35) saturate(0.3);
+    transition: filter 0.5s ease, transform 0.8s ease;
+  }
+
+  .hero-panel:hover .hero-panel-bg {
+    filter: brightness(0.5) saturate(0.5);
+    transform: scale(1.04);
+  }
+
+  .hero-panel-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--silver-mid), transparent);
+    opacity: 0.5;
+  }
+
+  .hero-panel-label {
+    position: absolute;
+    bottom: 16px; left: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--carbon-4);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 35s linear infinite;
+    width: max-content;
+  }
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 40px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .ticker-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver-mid);
+    white-space: nowrap;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    padding: 120px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-frame {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+
+  .about-img-frame::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--silver-dark) 0%, transparent 50%, var(--silver-dark) 100%);
+    z-index: -1;
+  }
+
+  .about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.6) 100%),
+      url('https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=800&q=80') center/cover;
+    filter: saturate(0.3) brightness(0.7);
+  }
+
+  .about-corner {
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: var(--silver-dark);
+    border-style: solid;
+    border-width: 0;
+  }
+
+  .about-corner.tl { top: -10px; left: -10px; border-top-width: 2px; border-left-width: 2px; }
+  .about-corner.br { bottom: -10px; right: -10px; border-bottom-width: 2px; border-right-width: 2px; }
+
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 120px; height: 120px;
+    background: var(--carbon-4);
+    border: 1px solid var(--silver-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(135deg, var(--carbon-4), var(--carbon-5));
+  }
+
+  .about-badge-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--silver-bright);
+    line-height: 1;
+  }
+
+  .about-badge-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver-mid);
+  }
+
+  .about-content {}
+
+  .section-eye {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .eye-bar {
+    width: 32px; height: 2px;
+    background: linear-gradient(to right, var(--silver-dark), var(--silver));
+  }
+
+  .eye-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--silver-mid);
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: 1px;
+    color: var(--silver-bright);
+    margin-bottom: 24px;
+  }
+
+  .section-title .chrome {
+    background: linear-gradient(90deg, #888 0%, #ddd 40%, #bbb 70%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-title .thin {
+    font-weight: 300;
+    color: var(--silver-mid);
+    -webkit-text-fill-color: initial;
+    background: none;
+  }
+
+  .about-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--silver-mid);
+    margin-bottom: 48px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--carbon-4);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .about-stat {
+    padding: 28px 24px;
+    background: var(--carbon-3);
+    text-align: center;
+  }
+
+  .about-stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #888, #ddd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .about-stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+
+  /* ─── PRODUCTS ─── */
+  .products {
+    padding: 120px 100px;
+    background: var(--carbon-1);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 5px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 5px);
+  }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 70px;
+  }
+
+  .products-header-right {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--silver-dark);
+    max-width: 300px;
+    line-height: 1.8;
+    text-align: right;
+  }
+
+  /* Tab system */
+  .product-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .tab-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+    background: var(--carbon-3);
+    border: none;
+    padding: 16px 28px;
+    cursor: pointer;
+    transition: color 0.3s, background 0.3s;
+    position: relative;
+  }
+
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--silver);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .tab-btn.active {
+    color: var(--silver-bright);
+    background: var(--carbon-4);
+  }
+  .tab-btn.active::after { transform: scaleX(1); }
+  .tab-btn:hover { color: var(--silver); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; }
+
+  /* GRP grid */
+  .grp-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    background: var(--carbon-3);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    background: var(--carbon-4);
+    transform: translateY(-4px);
+    border-bottom-color: var(--silver-mid);
+  }
+
+  .product-card-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    top: 10px; right: 16px;
+    line-height: 1;
+  }
+
+  .product-card-icon {
+    width: 44px; height: 44px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card-icon svg {
+    width: 100%; height: 100%;
+    stroke: var(--silver-dark);
+    fill: none;
+    stroke-width: 1.2;
+    transition: stroke 0.3s;
+  }
+
+  .product-card:hover .product-card-icon svg { stroke: var(--silver); }
+
+  .product-card-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--silver-light);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .product-card-desc {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--silver-dark);
+    transition: color 0.3s;
+  }
+
+  .product-card:hover .product-card-desc { color: var(--silver-mid); }
+
+  /* Sanitation grid */
+  .san-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  /* ─── FEATURED PANEL ─── */
+  .featured {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    background: var(--carbon-2);
+  }
+
+  .featured-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-img-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80') center/cover;
+    filter: brightness(0.3) saturate(0.2);
+    transition: transform 0.8s ease;
+  }
+
+  .featured:hover .featured-img-bg { transform: scale(1.04); }
+
+  .featured-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent, var(--carbon-2));
+  }
+
+  .featured-content {
+    padding: 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .featured-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+    margin-bottom: 20px;
+  }
+
+  .featured-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--silver-bright);
+    margin-bottom: 24px;
+  }
+
+  .featured-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--silver-mid);
+    margin-bottom: 48px;
+  }
+
+  .featured-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .spec-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--silver-mid);
+  }
+
+  .spec-item::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--silver-dark);
+    flex-shrink: 0;
+  }
+
+  /* ─── INDUSTRIES ─── */
+  .industries {
+    padding: 120px 100px;
+    background: var(--carbon-2);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 5px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 5px);
+  }
+
+  .industries-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+
+  .industry-card {
+    background: var(--carbon-3);
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .industry-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--silver-mid), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .industry-card:hover { background: var(--carbon-4); }
+  .industry-card:hover::before { opacity: 1; }
+
+  .industry-icon-wrap {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .industry-icon-wrap svg {
+    width: 26px; height: 26px;
+    stroke: var(--silver-dark);
+    fill: none;
+    stroke-width: 1.5;
+    transition: stroke 0.3s;
+  }
+
+  .industry-card:hover .industry-icon-wrap svg { stroke: var(--silver); }
+
+  .industry-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+    transition: color 0.3s;
+  }
+
+  .industry-card:hover .industry-name { color: var(--silver-light); }
+
+  /* ─── PROCESS ─── */
+  .process {
+    padding: 120px 100px;
+    background: var(--carbon-1);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 70px;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: calc(25% / 2);
+    right: calc(25% / 2);
+    height: 1px;
+    background: linear-gradient(to right, var(--carbon-5), var(--silver-dark), var(--carbon-5));
+  }
+
+  .process-step {
+    padding: 0 32px 48px;
+    position: relative;
+    text-align: center;
+  }
+
+  .step-circle {
+    width: 72px; height: 72px;
+    border: 1px solid var(--silver-dark);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    background: var(--carbon-2);
+    position: relative;
+    transform: rotate(45deg);
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .process-step:hover .step-circle {
+    border-color: var(--silver);
+    background: var(--carbon-4);
+  }
+
+  .step-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--silver-mid);
+    transform: rotate(-45deg);
+    transition: color 0.3s;
+  }
+
+  .process-step:hover .step-num { color: var(--silver-bright); }
+
+  .step-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver-light);
+    margin-bottom: 12px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--silver-dark);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    padding: 120px 100px;
+    background: var(--carbon-2);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 5px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 5px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-bg-text {
+    position: absolute;
+    top: 60px; left: 60px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 200px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+    letter-spacing: -10px;
+    pointer-events: none;
+  }
+
+  .testimonials-header { text-align: center; margin-bottom: 70px; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .testi-card {
+    background: var(--carbon-3);
+    padding: 44px 38px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.3s;
+    border-left: 2px solid transparent;
+  }
+
+  .testi-card:hover {
+    background: var(--carbon-4);
+    transform: translateY(-4px);
+    border-left-color: var(--silver-mid);
+  }
+
+  .testi-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 22px;
+  }
+
+  .star-icon {
+    width: 12px; height: 12px;
+    fill: var(--silver-mid);
+  }
+
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--silver-light);
+    margin-bottom: 28px;
+  }
+
+  .testi-divider {
+    width: 32px; height: 1px;
+    background: var(--silver-dark);
+    margin-bottom: 20px;
+  }
+
+  .testi-author {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--silver);
+    margin-bottom: 4px;
+  }
+
+  .testi-role {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    position: relative;
+    overflow: hidden;
+    padding: 140px 100px;
+    text-align: center;
+    background: var(--carbon-1);
+  }
+
+  .cta-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 6px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 6px);
+  }
+
+  .cta-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(180,190,200,0.05) 0%, transparent 70%);
+  }
+
+  .cta-content { position: relative; z-index: 1; }
+
+  .cta-overline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+    margin-bottom: 28px;
+  }
+
+  .cta-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--silver-bright);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  .cta-title .chrome {
+    background: linear-gradient(90deg, #888 0%, #ddd 40%, #bbb 70%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--silver-dark);
+    max-width: 500px;
+    margin: 0 auto 60px;
+    line-height: 2;
+  }
+
+  .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  .btn-cta-primary {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--carbon-1);
+    background: linear-gradient(135deg, #bbb 0%, #e8e8e8 50%, #bbb 100%);
+    padding: 18px 52px;
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: opacity 0.3s;
+  }
+  .btn-cta-primary:hover { opacity: 0.85; }
+
+  .btn-cta-outline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver);
+    border: 1px solid var(--silver-dark);
+    padding: 18px 40px;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-cta-outline:hover { border-color: var(--silver); color: var(--silver-bright); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--carbon-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-top {
+    padding: 80px 100px 60px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-brand {}
+
+  .footer-wordmark {
+    margin-bottom: 24px;
+  }
+
+  .footer-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--silver-dark);
+    margin-bottom: 28px;
+    max-width: 280px;
+  }
+
+  .footer-contact-item {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--silver-dark);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-contact-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-contact-item a:hover { color: var(--silver); }
+
+  .footer-col-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--silver-mid);
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--silver-dark);
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+    display: block;
+  }
+
+  .footer-links a:hover { color: var(--silver); padding-left: 6px; }
+
+  .footer-bottom {
+    padding: 28px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--silver-dark);
+  }
+
+  .footer-tagline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.08);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+  .reveal-d5 { transition-delay: 0.5s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    nav { padding: 0 30px; }
+    .hero-content { padding: 120px 40px 100px; }
+    .hero-panels { display: none; }
+    .about, .featured { grid-template-columns: 1fr; }
+    .about { padding: 80px 40px; gap: 60px; }
+    .products, .industries, .process, .testimonials, .cta { padding: 80px 40px; }
+    .grp-grid { grid-template-columns: repeat(2, 1fr); }
+    .san-grid { grid-template-columns: 1fr 1fr; }
+    .industries-grid { grid-template-columns: repeat(3, 1fr); }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; padding: 60px 40px; }
+    .footer-bottom { padding: 24px 40px; flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <div class="vms-wordmark">
+      <!-- Carbon fiber layered diamond icon (SVG recreation of the logo mark) -->
+      <svg class="vms-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cf1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#555"/>
+            <stop offset="40%" stop-color="#aaa"/>
+            <stop offset="70%" stop-color="#777"/>
+            <stop offset="100%" stop-color="#ccc"/>
+          </linearGradient>
+          <linearGradient id="cf2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#444"/>
+            <stop offset="50%" stop-color="#888"/>
+            <stop offset="100%" stop-color="#666"/>
+          </linearGradient>
+          <linearGradient id="cf3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#333"/>
+            <stop offset="50%" stop-color="#666"/>
+            <stop offset="100%" stop-color="#555"/>
+          </linearGradient>
+        </defs>
+        <!-- Top diamond (brightest) -->
+        <polygon points="30,4 52,16 30,26 8,16" fill="url(#cf1)" opacity="0.95"/>
+        <!-- Mid diamond -->
+        <polygon points="30,28 52,40 30,50 8,40" fill="url(#cf2)" opacity="0.85"/>
+        <!-- Bottom diamond (darkest) -->
+        <polygon points="30,38 52,50 30,57 8,50" fill="url(#cf3)" opacity="0.7"/>
+        <!-- Highlight lines -->
+        <line x1="8" y1="16" x2="52" y2="16" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+        <line x1="8" y1="40" x2="52" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      </svg>
+      <div class="vms-text-group">
+        <span class="vms-vms">VMS</span>
+        <span class="vms-composites">COMPOSITES</span>
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+
+  <a href="#contact" class="nav-cta"><span>Get a Quote</span></a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-spotlight"></div>
+  <div class="hero-diagonal"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-text">UAE's Premier Composite & Portable Solutions Manufacturer</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line-1">FORGED IN</span>
+      <span class="line-2">COMPOSITES</span>
+      <span class="line-3">Precision · Durability · Innovation</span>
+    </h1>
+
+    <p class="hero-desc">
+      VMS Composites engineers and manufactures world-class GRP/FRP enclosures, portable sanitation units, prefabricated structures, and security cabins — built to withstand the demanding conditions of the UAE and GCC.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="#contact" class="btn-ghost">Request a Quote</a>
+    </div>
+  </div>
+
+  <div class="hero-panels">
+    <div class="hero-panel">
+      <div class="hero-panel-bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80')"></div>
+      <div class="hero-panel-bar"></div>
+      <div class="hero-panel-label">GRP Manufacturing</div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-panel-bg" style="background-image: url('https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=700&q=80')"></div>
+      <div class="hero-panel-bar"></div>
+      <div class="hero-panel-label">Industrial Engineering</div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-panel-bg" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80')"></div>
+      <div class="hero-panel-bar"></div>
+      <div class="hero-panel-label">Prefabricated Solutions</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-text">GRP Enclosures & Cabinets</span></div>
+    <div class="ticker-item"><span class="ticker-text">FRP Panels & Kiosks</span></div>
+    <div class="ticker-item"><span class="ticker-text">Portable Sanitation Units</span></div>
+    <div class="ticker-item"><span class="ticker-text">Luxury Portable Toilets</span></div>
+    <div class="ticker-item"><span class="ticker-text">Porta Cabins & Site Offices</span></div>
+    <div class="ticker-item"><span class="ticker-text">Container Conversions</span></div>
+    <div class="ticker-item"><span class="ticker-text">Security Guard Cabins</span></div>
+    <div class="ticker-item"><span class="ticker-text">Skylight & Roofing Sheets</span></div>
+    <div class="ticker-item"><span class="ticker-text">GRP Gutters & Downspouts</span></div>
+    <div class="ticker-item"><span class="ticker-text">Chemical & Waterless Toilets</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-text">GRP Enclosures & Cabinets</span></div>
+    <div class="ticker-item"><span class="ticker-text">FRP Panels & Kiosks</span></div>
+    <div class="ticker-item"><span class="ticker-text">Portable Sanitation Units</span></div>
+    <div class="ticker-item"><span class="ticker-text">Luxury Portable Toilets</span></div>
+    <div class="ticker-item"><span class="ticker-text">Porta Cabins & Site Offices</span></div>
+    <div class="ticker-item"><span class="ticker-text">Container Conversions</span></div>
+    <div class="ticker-item"><span class="ticker-text">Security Guard Cabins</span></div>
+    <div class="ticker-item"><span class="ticker-text">Skylight & Roofing Sheets</span></div>
+    <div class="ticker-item"><span class="ticker-text">GRP Gutters & Downspouts</span></div>
+    <div class="ticker-item"><span class="ticker-text">Chemical & Waterless Toilets</span></div>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about" style="background:#111; background-image: repeating-linear-gradient(45deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 5px),repeating-linear-gradient(-45deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 5px);">
+  <div class="about-visual reveal">
+    <div class="about-img-frame">
+      <div class="about-img"></div>
+      <div class="about-corner tl"></div>
+      <div class="about-corner br"></div>
+    </div>
+    <div class="about-badge">
+      <div class="about-badge-num">UAE</div>
+      <div class="about-badge-label">Based</div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <div class="section-eye reveal">
+      <div class="eye-bar"></div>
+      <span class="eye-text">Who We Are</span>
+    </div>
+
+    <h2 class="section-title reveal">
+      COMPOSITE<br><span class="chrome">EXCELLENCE</span><br><span class="thin">Built For The Gulf</span>
+    </h2>
+
+    <p class="about-text reveal">
+      VMS Composites is a UAE-based manufacturer specializing in Glass Reinforced Polyester (GRP/FRP) products and portable modular solutions. From ruggedized electrical enclosures to luxury portable sanitation units, every product we make is engineered to perform in the harshest Gulf conditions — salt air, desert heat, and demanding project timelines.
+    </p>
+
+    <p class="about-text reveal">
+      We serve major contractors, government bodies, oil & gas operators, event organizers, and developers across the GCC, delivering custom-built solutions that combine international-grade quality with fast regional turnaround.
+    </p>
+
+    <div class="about-stats reveal">
+      <div class="about-stat">
+        <div class="about-stat-num">GCC</div>
+        <div class="about-stat-label">Coverage</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">100%</div>
+        <div class="about-stat-label">Custom Build</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">ISO</div>
+        <div class="about-stat-label">Certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="products" id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-eye reveal">
+        <div class="eye-bar"></div>
+        <span class="eye-text">Product Portfolio</span>
+      </div>
+      <h2 class="section-title reveal">OUR <span class="chrome">PRODUCT</span><br>RANGE</h2>
+    </div>
+    <div class="products-header-right reveal">
+      Every VMS product is engineered to spec, custom-fabricated, and built to outlast the competition in the Gulf's extreme environments.
+    </div>
+  </div>
+
+  <div class="product-tabs">
+    <button class="tab-btn active" onclick="switchTab(this, 'grp')">GRP / FRP Composites</button>
+    <button class="tab-btn" onclick="switchTab(this, 'sanitation')">Portable Sanitation</button>
+    <button class="tab-btn" onclick="switchTab(this, 'modular')">Modular Structures</button>
+  </div>
+
+  <!-- GRP Tab -->
+  <div class="tab-content active grp-grid" id="tab-grp">
+    <div class="product-card reveal">
+      <div class="product-card-num">01</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+      </div>
+      <div class="product-card-name">GRP Enclosures & Cabinets</div>
+      <div class="product-card-desc">Corrosion-proof GRP enclosures for electrical, telecom, and instrumentation equipment — suitable for harsh coastal and industrial environments.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">02</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8"/></svg>
+      </div>
+      <div class="product-card-name">GRP Kiosks & Cubicles</div>
+      <div class="product-card-desc">Modular, weather-resistant GRP kiosks for outdoor metering stations, substations, and control enclosures — factory-assembled and site-ready.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">03</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="product-card-name">Skylight & Roofing Sheets</div>
+      <div class="product-card-desc">Single, double, and triple-skin GRP skylights and wall light sheets — UV-resistant, energy-efficient natural daylighting for industrial buildings.</div>
+    </div>
+    <div class="product-card reveal reveal-d3">
+      <div class="product-card-num">04</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="product-card-name">GRP Roofing Sheets</div>
+      <div class="product-card-desc">Lightweight, high-strength GRP roofing panels for warehouses, factories, and industrial complexes — low maintenance, long service life.</div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-num">05</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12H2"/><path d="M5 12V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
+      </div>
+      <div class="product-card-name">GRP Gutters & Downspouts</div>
+      <div class="product-card-desc">Rust-proof, high-capacity GRP rainwater management systems — perfectly sealed, thermally stable, and built for longevity in the Gulf climate.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">06</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      </div>
+      <div class="product-card-name">GRP Sunshades & Canopies</div>
+      <div class="product-card-desc">Precision-fabricated GRP canopies that protect sensitive instruments, meters, and equipment from direct sun, rain, and extreme temperature swings.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">07</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <div class="product-card-name">Fire Fighting Cabinets</div>
+      <div class="product-card-desc">High-visibility, impact-resistant GRP fire hose and extinguisher cabinets engineered for critical safety applications on industrial and commercial sites.</div>
+    </div>
+    <div class="product-card reveal reveal-d3">
+      <div class="product-card-num">08</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+      </div>
+      <div class="product-card-name">Utility Approved Products</div>
+      <div class="product-card-desc">GRP products certified to DEWA, ADDC, SEWA, and international utility standards — trusted by government bodies and major infrastructure projects.</div>
+    </div>
+  </div>
+
+  <!-- Sanitation Tab -->
+  <div class="tab-content san-grid" id="tab-sanitation">
+    <div class="product-card reveal">
+      <div class="product-card-num">01</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 20h14"/><rect x="7" y="4" width="10" height="12" rx="1"/><path d="M9 4V2h6v2"/></svg>
+      </div>
+      <div class="product-card-name">Luxury Portable Toilets</div>
+      <div class="product-card-desc">VIP-grade multi-cabin portable restroom trailers and modular luxury units for high-end events, weddings, and corporate functions across the UAE.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">02</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v6"/></svg>
+      </div>
+      <div class="product-card-name">GRP / FRP Fiber Toilets</div>
+      <div class="product-card-desc">Durable, corrosion-resistant glass fiber portable toilets for construction sites, labor camps, and remote outdoor locations — easy to clean, long service life.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">03</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M6.5 8a6 6 0 0 0 11 0"/><path d="M12 8v8"/><path d="M9 16h6"/></svg>
+      </div>
+      <div class="product-card-name">Chemical / Waterless Toilets</div>
+      <div class="product-card-desc">Eco-friendly, self-contained chemical portable toilets that require no water connection — ideal for festivals, construction sites, and remote locations.</div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-num">04</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="13" rx="2"/><path d="M12 8V4"/><path d="M8 4h8"/></svg>
+      </div>
+      <div class="product-card-name">Trailer & Caravan Toilets</div>
+      <div class="product-card-desc">Fully mobile twin and quad-cabin toilet trailer units with complete amenities — perfect for events, temporary deployments, and remote projects.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">05</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22c-5 0-9-1.3-9-3V5c0-1.7 4-3 9-3s9 1.3 9 3v14c0 1.7-4 3-9 3z"/><path d="M3 5c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
+      </div>
+      <div class="product-card-name">Handwash Stations</div>
+      <div class="product-card-desc">Standalone portable hand-wash units with integrated water tanks and dispensers — essential for construction sites, food events, and public gatherings.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">06</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M7 6h10l1 12H6L7 6z"/><path d="M9 6V4h6v2"/><line x1="12" y1="10" x2="12" y2="14"/></svg>
+      </div>
+      <div class="product-card-name">Portable Showers & Urinals</div>
+      <div class="product-card-desc">Purpose-built portable shower and urinal units for labor camps, construction sites, and outdoor festivals — hygienic, durable, and easy to install.</div>
+    </div>
+  </div>
+
+  <!-- Modular Tab -->
+  <div class="tab-content san-grid" id="tab-modular">
+    <div class="product-card reveal">
+      <div class="product-card-num">01</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
+      </div>
+      <div class="product-card-name">Porta Cabins & Site Offices</div>
+      <div class="product-card-desc">Steel-framed, panel-insulated portable office cabins and site offices — available in standard and custom layouts for construction, industrial, and commercial sites.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">02</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="product-card-name">Container Conversions</div>
+      <div class="product-card-desc">Shipping containers transformed into offices, accommodations, workshops, kitchens, training rooms, cafes, shops, and custom functional spaces.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">03</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="product-card-name">Security Guard Cabins</div>
+      <div class="product-card-desc">Fortified, weather-resistant security cabins for gate-houses, parking areas, and commercial complexes — available in steel, GRP, and containerized formats.</div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-card-num">04</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </div>
+      <div class="product-card-name">Modular Staff Accommodation</div>
+      <div class="product-card-desc">Prefabricated dormitory units, crew quarters, and staff accommodation modules — designed for rapid deployment on remote sites across the GCC.</div>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="product-card-num">05</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="product-card-name">Ablution & Wudu Units</div>
+      <div class="product-card-desc">Fully plumbed prefabricated ablution and wudu units for mosques, labor camps, and events — customizable in size, tile finish, and water system configuration.</div>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="product-card-num">06</div>
+      <div class="product-card-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <div class="product-card-name">Custom Prefab Solutions</div>
+      <div class="product-card-desc">Bespoke prefabricated facilities — from container cafes and shops to training rooms and meeting spaces — engineered exactly to your project's requirements.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED PRODUCT ── -->
+<div class="featured">
+  <div class="featured-img">
+    <div class="featured-img-bg"></div>
+    <div class="featured-img-overlay"></div>
+  </div>
+  <div class="featured-content">
+    <div class="featured-label">Flagship Product Line</div>
+    <h3 class="featured-title">UTILITY-GRADE<br>GRP ENCLOSURES</h3>
+    <p class="featured-text">Our flagship GRP enclosure range is approved by DEWA, ADDC, SEWA, and other GCC utility authorities. These enclosures protect critical electrical infrastructure from corrosion, impact, UV degradation, and extreme temperatures — tested to IP55 and above.</p>
+    <div class="featured-specs">
+      <div class="spec-item">DEWA / ADDC Approved</div>
+      <div class="spec-item">IP55 to IP66 Rating</div>
+      <div class="spec-item">UV & Corrosion Resistant</div>
+      <div class="spec-item">Custom Dimensions</div>
+      <div class="spec-item">Self-Extinguishing</div>
+      <div class="spec-item">Non-Conductive</div>
+    </div>
+    <a href="#contact" class="btn-primary">Request Technical Specs</a>
+  </div>
+</div>
+
+<!-- ── INDUSTRIES ── -->
+<section class="industries" id="industries">
+  <div class="industries-header">
+    <div class="section-eye reveal" style="justify-content:center; display:flex">
+      <div class="eye-bar"></div>
+      <span class="eye-text">Sectors We Serve</span>
+    </div>
+    <h2 class="section-title reveal" style="text-align:center">INDUSTRIES<br><span class="chrome">WE POWER</span></h2>
+  </div>
+
+  <div class="industries-grid">
+    <div class="industry-card reveal">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="industry-name">Electrical & Utilities</div>
+    </div>
+    <div class="industry-card reveal reveal-d1">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </div>
+      <div class="industry-name">Construction</div>
+    </div>
+    <div class="industry-card reveal reveal-d2">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="industry-name">Oil & Gas</div>
+    </div>
+    <div class="industry-card reveal reveal-d1">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="industry-name">Events & Festivals</div>
+    </div>
+    <div class="industry-card reveal reveal-d2">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </div>
+      <div class="industry-name">Architecture</div>
+    </div>
+    <div class="industry-card reveal reveal-d3">
+      <div class="industry-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="industry-name">Government</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process" id="process">
+  <div class="section-eye reveal" style="justify-content:center; display:flex">
+    <div class="eye-bar"></div>
+    <span class="eye-text">How We Work</span>
+  </div>
+  <h2 class="section-title reveal" style="text-align:center">FROM BRIEF TO<br><span class="chrome">DELIVERY</span></h2>
+
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-circle"><div class="step-num">01</div></div>
+      <div class="step-title">Consultation</div>
+      <div class="step-text">Tell us your requirements — size, spec, site conditions, standards needed. Our engineers assess your exact needs and provide a technical recommendation.</div>
+    </div>
+    <div class="process-step reveal reveal-d1">
+      <div class="step-circle"><div class="step-num">02</div></div>
+      <div class="step-title">Custom Design</div>
+      <div class="step-text">We design and engineer the product to your specification, providing detailed drawings and material callouts for your approval before production begins.</div>
+    </div>
+    <div class="process-step reveal reveal-d2">
+      <div class="step-circle"><div class="step-num">03</div></div>
+      <div class="step-title">Manufacturing</div>
+      <div class="step-text">Products are manufactured at our UAE facility using certified raw materials — GRP layup, steel fabrication, panel assembly — under strict quality control.</div>
+    </div>
+    <div class="process-step reveal reveal-d3">
+      <div class="step-circle"><div class="step-num">04</div></div>
+      <div class="step-title">Delivery & Install</div>
+      <div class="step-text">We handle logistics, on-site delivery, and installation across the UAE and GCC — then provide ongoing maintenance and after-sales support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="testimonials-bg-text">VMS</div>
+  <div class="testimonials-header">
+    <div class="section-eye reveal" style="justify-content:center; display:flex">
+      <div class="eye-bar"></div>
+      <span class="eye-text">Client Voices</span>
+    </div>
+    <h2 class="section-title reveal" style="text-align:center">TRUSTED ACROSS<br><span class="chrome">THE REGION</span></h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text">"The GRP enclosures from VMS are exceptional. Every unit met our DEWA approval requirements exactly, delivered on-spec and on schedule. The quality is consistent batch after batch."</p>
+      <div class="testi-divider"></div>
+      <div class="testi-author">Ahmed Al Rashid</div>
+      <div class="testi-role">Projects Director · Electrical Contractor, Dubai</div>
+    </div>
+
+    <div class="testi-card reveal reveal-d1">
+      <div class="testi-stars">
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text">"We rented luxury portable toilet trailers for a major corporate gala in Abu Dhabi. VMS delivered on time, the units were immaculate, and our guests were genuinely impressed."</p>
+      <div class="testi-divider"></div>
+      <div class="testi-author">Fatima Al Zaabi</div>
+      <div class="testi-role">Events Manager · Corporate Hospitality Group</div>
+    </div>
+
+    <div class="testi-card reveal reveal-d2">
+      <div class="testi-stars">
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-text">"Container conversion for our offshore support base was seamless. VMS handled everything from design to delivery — the finished units were better than what we'd originally specified."</p>
+      <div class="testi-divider"></div>
+      <div class="testi-author">Mark T.</div>
+      <div class="testi-role">Site Manager · Oil & Gas Services, Sharjah</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta" id="contact">
+  <div class="cta-pattern"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-content reveal">
+    <div class="cta-overline">Get In Touch</div>
+    <h2 class="cta-title">READY TO BUILD<br><span class="chrome">WITH VMS?</span></h2>
+    <p class="cta-subtitle">Tell us your project requirements and our engineering team will respond with a technical proposal and competitive quote within 24 hours.</p>
+    <div class="cta-btns">
+      <a href="mailto:info@vmscomposites.com" class="btn-cta-primary">Request a Free Quote</a>
+      <a href="tel:+97143335950" class="btn-cta-outline">Call Our Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-wordmark">
+        <div class="vms-wordmark" style="margin-bottom:20px">
+          <svg class="vms-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cf1f" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#555"/><stop offset="40%" stop-color="#aaa"/><stop offset="70%" stop-color="#777"/><stop offset="100%" stop-color="#ccc"/></linearGradient>
+              <linearGradient id="cf2f" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#444"/><stop offset="50%" stop-color="#888"/><stop offset="100%" stop-color="#666"/></linearGradient>
+              <linearGradient id="cf3f" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#666"/><stop offset="100%" stop-color="#555"/></linearGradient>
+            </defs>
+            <polygon points="30,4 52,16 30,26 8,16" fill="url(#cf1f)" opacity="0.95"/>
+            <polygon points="30,28 52,40 30,50 8,40" fill="url(#cf2f)" opacity="0.85"/>
+            <polygon points="30,38 52,50 30,57 8,50" fill="url(#cf3f)" opacity="0.7"/>
+          </svg>
+          <div class="vms-text-group">
+            <span class="vms-vms">VMS</span>
+            <span class="vms-composites">COMPOSITES</span>
+          </div>
+        </div>
+      </div>
+      <p class="footer-desc">VMS Composites manufactures premium GRP/FRP composite products, portable sanitation units, and prefabricated modular structures — serving the UAE and GCC from our UAE facility.</p>
+      <div class="footer-contact-item">📧 <a href="mailto:info@vmscomposites.com">info@vmscomposites.com</a></div>
+      <div class="footer-contact-item">📞 <a href="tel:+97143335950">+971 4 XXX XXXX</a></div>
+      <div class="footer-contact-item">📍 Dubai Industrial City, UAE</div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">GRP Products</div>
+      <ul class="footer-links">
+        <li><a href="#products">GRP Enclosures</a></li>
+        <li><a href="#products">GRP Cabinets</a></li>
+        <li><a href="#products">Kiosks & Cubicles</a></li>
+        <li><a href="#products">Skylight Sheets</a></li>
+        <li><a href="#products">Roofing Sheets</a></li>
+        <li><a href="#products">GRP Gutters</a></li>
+        <li><a href="#products">Fire Cabinets</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Sanitation</div>
+      <ul class="footer-links">
+        <li><a href="#products">Luxury Toilets</a></li>
+        <li><a href="#products">GRP Toilets</a></li>
+        <li><a href="#products">Chemical Toilets</a></li>
+        <li><a href="#products">Trailer Toilets</a></li>
+        <li><a href="#products">Handwash Stations</a></li>
+        <li><a href="#products">Portable Showers</a></li>
+        <li><a href="#products">Toilet Rental</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Modular</div>
+      <ul class="footer-links">
+        <li><a href="#products">Porta Cabins</a></li>
+        <li><a href="#products">Container Conversions</a></li>
+        <li><a href="#products">Security Cabins</a></li>
+        <li><a href="#products">Accommodation</a></li>
+        <li><a href="#products">Ablution Units</a></li>
+        <li><a href="#products">Custom Prefab</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 VMS Composites LLC · All Rights Reserved · UAE</div>
+    <div class="footer-tagline">FORGED IN COMPOSITES</div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+
+  (function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  document.querySelectorAll('a, button, .product-card, .industry-card, .testi-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '44px'; ring.style.height = '44px';
+      ring.style.borderColor = 'rgba(220,220,220,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '28px'; ring.style.height = '28px';
+      ring.style.borderColor = 'rgba(200,200,200,0.4)';
+    });
+  });
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Tabs
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    // Re-trigger reveal for newly shown cards
+    document.querySelectorAll('#tab-' + tab + ' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  }
+</script>
+</body>
+</html>
