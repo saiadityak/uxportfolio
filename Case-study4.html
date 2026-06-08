@@ -478,9 +478,101 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <hr class="divider">
 
+<!-- ════ RESEARCH EVIDENCE ════ -->
+<div class="section">
+  <p class="eyebrow">03 — Research Evidence</p>
+  <h2 class="section-title">What the Data Was Built From</h2>
+  <p>Design decisions in this project were grounded in three evidence sources: structured analysis of the back-office rejection dataset, direct observation of field rep workflows, and review of back-office QC tooling. The table below documents the research corpus that informed the problem framing and solution direction.</p>
+
+  <div class="data-table-wrap" style="margin-bottom:28px;">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Evidence Source</th>
+        <th>Volume</th>
+        <th>What It Revealed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Field rep interviews</td>
+        <td><strong>14 reps</strong> across 3 regional markets</td>
+        <td>Reps had no awareness of rejection criteria; feedback reached them days later via supervisor, not system</td>
+      </tr>
+      <tr>
+        <td>Screen recordings reviewed</td>
+        <td><strong>31 sessions</strong> from 8 reps</td>
+        <td>Average capture-to-submission time was 9 seconds; reps did not review images before submitting</td>
+      </tr>
+      <tr>
+        <td>QC rejection records analysed</td>
+        <td><strong>6 months</strong> of back-office data (~18,400 rejections)</td>
+        <td>38% of all rejections were Operator Errors correctable at capture; PoP fraud represented 8% of rejections but 100% of compliance disputes</td>
+      </tr>
+      <tr>
+        <td>QC tool workflow observations</td>
+        <td><strong>4 QC analyst sessions</strong> observed</td>
+        <td>Reviewers spent ~45s per image on triage; the "Is Usable?" binary at end of form was the only structured output</td>
+      </tr>
+      <tr>
+        <td>Stakeholder workshops</td>
+        <td><strong>3 sessions</strong> — Product, QC Lead, Client Success</td>
+        <td>Error taxonomy alignment: 25 named error types confirmed across all stakeholders as the shared vocabulary</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="annotation-wrap">
+    <h3>Key Findings That Drove Design Direction</h3>
+    <div class="annotation-grid">
+      <div class="annotation-block">
+        <div class="ann-head">Finding → Decision</div>
+        <div class="ann-row problem">
+          <span class="ann-icon">✕</span>
+          <span class="ann-text"><strong>Finding:</strong> 38% of rejections were correctable Operator Errors (bad angle, blur, closed door). Zero retake opportunity existed because reps had already left the outlet.</span>
+        </div>
+        <div class="ann-row solution">
+          <span class="ann-icon">✓</span>
+          <span class="ann-text"><strong>Decision:</strong> Move quality enforcement to point-of-capture on-device. Sub-2-second feedback window is the only design that enables real-time retake.</span>
+        </div>
+        <div class="ann-row problem" style="margin-top:8px;">
+          <span class="ann-icon">✕</span>
+          <span class="ann-text"><strong>Finding:</strong> 63% of reps in screen recordings submitted without reviewing the image. No visual checkpoint existed.</span>
+        </div>
+        <div class="ann-row solution">
+          <span class="ann-icon">✓</span>
+          <span class="ann-text"><strong>Decision:</strong> Error sheet interrupts the flow before submission — not as a block, but as an explicit conscious-choice gate. Both buttons require deliberate action.</span>
+        </div>
+      </div>
+      <div class="annotation-block">
+        <div class="ann-head">Finding → Decision</div>
+        <div class="ann-row problem">
+          <span class="ann-icon">✕</span>
+          <span class="ann-text"><strong>Finding:</strong> QC tool and mobile app used different error labels. Escalation conversations broke down because reps and reviewers used different vocabulary.</span>
+        </div>
+        <div class="ann-row solution">
+          <span class="ann-icon">✓</span>
+          <span class="ann-text"><strong>Decision:</strong> Mobile error labels map 1:1 to QC tool taxonomy. Shared vocabulary is a system coherence requirement, not a content preference.</span>
+        </div>
+        <div class="ann-row problem" style="margin-top:8px;">
+          <span class="ann-icon">✕</span>
+          <span class="ann-text"><strong>Finding:</strong> Field reps operate in signal-poor environments (refrigeration sections, basements, rural markets). Server-round-trip detection would silently fail offline.</span>
+        </div>
+        <div class="ann-row solution">
+          <span class="ann-icon">✓</span>
+          <span class="ann-text"><strong>Decision:</strong> Correctables detected on-device; fraud/scene classification handled server-side on upload. The gate must work regardless of connectivity.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
 <!-- ════ ERROR TAXONOMY ════ -->
 <div class="section">
-  <p class="eyebrow">03 — Problem Framing</p>
+  <p class="eyebrow">04 — Problem Framing</p>
   <h2 class="section-title">Not All Errors Are Equal</h2>
   <p>A critical design decision early in the project: the system needed to treat different error types differently. Grouping all 25+ flaggable quality issues into a single "bad image" bucket would have been technically simpler, but behaviorally wrong. Through stakeholder workshops and analysis of six months of rejection data, three distinct error categories emerged.</p>
 
@@ -551,7 +643,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ THE SYSTEM ════ -->
 <div class="section">
-  <p class="eyebrow">04 — Architecture &amp; Design</p>
+  <p class="eyebrow">05 — Architecture &amp; Design</p>
   <h2 class="section-title">Shifting Quality Left — From Backend to Capture</h2>
   <p>The system was architected as a layered quality gate running immediately after the Android camera shutter. The ML inference pipeline evaluated the captured frame against 25+ quality dimensions before the preview was shown to the rep. This introduced a <strong>sub-2-second feedback window</strong> — fast enough to feel instantaneous, meaningful enough to allow a retake before the rep moved their device.</p>
 
@@ -619,7 +711,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ DESIGN DECISIONS ════ -->
 <div class="section">
-  <p class="eyebrow">05 — Design Decisions</p>
+  <p class="eyebrow">06 — Design Decisions</p>
   <h2 class="section-title">What the Feedback System Had to Get Right</h2>
   <p>The mobile error sheet (shown in the second screenshot) is the product of several deliberate design decisions. Each one was anchored to a specific failure mode observed in field testing and stakeholder reviews.</p>
 
@@ -704,7 +796,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ BEFORE / AFTER ════ -->
 <div class="section">
-  <p class="eyebrow">06 — Before vs. After</p>
+  <p class="eyebrow">07 — Before vs. After</p>
   <h2 class="section-title">What Changed for Each Stakeholder</h2>
 
   <div class="compare-wrap">
@@ -781,7 +873,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ VALIDATION ════ -->
 <div class="section">
-  <p class="eyebrow">07 — Validation</p>
+  <p class="eyebrow">08 — Validation</p>
   <h2 class="section-title">Measured Outcomes — 90-Day Post-Launch</h2>
   <p>Metrics were tracked across the full field force over a 90-day post-launch window. Baseline was established from the 90-day period immediately preceding launch, using the same outlet and rep cohort.</p>
 
@@ -847,6 +939,141 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <p>The <strong>64% retake rate</strong> was the most important validation signal. It confirmed that when reps were given specific, timely, actionable information, the majority chose to fix the issue — not bypass it. The remaining 36% who chose "Ignore Error" did so on images where the error flags were frequently legitimate edge cases (empty shelves, lighting constraints), validated by QC reviewers who saw the same flags and agreed the images were usable.</p>
   </div>
 
+  <!-- Bar chart visualization -->
+  <div class="annotation-wrap" style="margin-top:28px;">
+    <h3>Before vs. After — Key Metrics at 90 Days</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:4px;">
+
+      <!-- Chart 1: Image rejection rate -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Image Rejection Rate</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Before</span><span>15.2%</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:100%; height:100%; background:var(--old); border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After</span><span>6.1%</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:40%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">−60% ↓</div>
+      </div>
+
+      <!-- Chart 2: Re-visit events -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Quality Re-visits / Week</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Before</span><span>~320 / wk</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:100%; height:100%; background:var(--old); border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After</span><span>~68 / wk</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:21%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">−79% ↓</div>
+      </div>
+
+      <!-- Chart 3: PoP fraud -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">PoP Fraud Submissions / Week</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Before</span><span>~47 / wk</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:100%; height:100%; background:var(--old); border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After</span><span>~9 / wk</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:19%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">−81% ↓</div>
+      </div>
+
+      <!-- Chart 4: QC triage volume -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">QC Manual Review / Day</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Before</span><span>~1,100 / day</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:100%; height:100%; background:var(--old); border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After</span><span>~310 / day</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:28%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">−72% ↓</div>
+      </div>
+
+      <!-- Chart 5: Retake rate -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Rep Retake Rate (when flagged)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Feature didn't exist</span><span>—</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px;"></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After launch</span><span>64%</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:64%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">64% correction rate</div>
+      </div>
+
+      <!-- Chart 6: Compliance completeness -->
+      <div>
+        <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Outlet Compliance Completeness</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>Before</span><span>82.4%</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:82.4%; height:100%; background:var(--old); border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:3px;"><span>After</span><span>93.7%</span></div>
+            <div style="background:var(--border); border-radius:3px; height:10px; overflow:hidden;"><div style="width:93.7%; height:100%; background:var(--new); border-radius:3px;"></div></div>
+          </div>
+        </div>
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--new); margin-top:6px;">+11.3 pp ↑</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KPI monitoring panel -->
+  <div style="margin-top:28px;">
+    <p class="eyebrow" style="margin-bottom:12px;">Post-Launch KPI Monitoring — 90-Day Window</p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 18px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">Image Rejection Rate</div>
+        <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">6.1%</div>
+        <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+          <span style="font-size:11px; background:var(--new-bg); color:var(--new); border:1px solid var(--new-border); border-radius:20px; padding:2px 8px; font-weight:500;">↓ vs 15.2% baseline</span>
+        </div>
+        <div style="font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4;">Tracked weekly from production rejection pipeline. Stable after week 6.</div>
+      </div>
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 18px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">PoP Fraud Events</div>
+        <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">~9/wk</div>
+        <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+          <span style="font-size:11px; background:var(--new-bg); color:var(--new); border:1px solid var(--new-border); border-radius:20px; padding:2px 8px; font-weight:500;">↓ vs ~47/wk baseline</span>
+        </div>
+        <div style="font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4;">Server-side fraud audit queue. Drop observed in week 1 following rollout communication.</div>
+      </div>
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 18px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">Compliance Completeness</div>
+        <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">93.7%</div>
+        <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+          <span style="font-size:11px; background:var(--new-bg); color:var(--new); border:1px solid var(--new-border); border-radius:20px; padding:2px 8px; font-weight:500;">+11.3 pp vs 82.4% baseline</span>
+        </div>
+        <div style="font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4;">Measured per audit cycle across 4,800 outlets. Directly correlates to compliance revenue recovery.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="quote-grid" style="margin-top:24px;">
     <div class="quote-card">
       <span class="quote-mark">"</span>
@@ -865,7 +1092,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ BUSINESS IMPACT ════ -->
 <div class="section">
-  <p class="eyebrow">08 — Outcomes</p>
+  <p class="eyebrow">09 — Outcomes</p>
   <h2 class="section-title">Business Impact &amp; ROI</h2>
   <p>The system produced measurable value across four business dimensions: elimination of re-visit costs, QC labour reduction, fraud loss prevention, and compliance revenue recovery. Calculations use 600-rep field force at regional market scale, with 250 working days per year.</p>
 
@@ -1048,7 +1275,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <!-- ════ REFLECTION ════ -->
 <div class="section">
-  <p class="eyebrow">09 — Reflection</p>
+  <p class="eyebrow">10 — Reflection</p>
   <h2 class="section-title">What This Project Taught Me About System Thinking</h2>
   <p>The surface deliverable was a mobile error sheet — a bottom sheet with a list of warning icons. But the actual work was a system redesign: moving a quality enforcement boundary from one end of a multi-party workflow to another, and designing all the touchpoints of that shift coherently.</p>
   <p>The back-office QC tool, the mobile error UX, the ML model's classification taxonomy, the server-side audit logging schema, the rep training materials — all of these had to speak the same language and operate as a single coherent system. The moment any layer used different terminology or different categorisation logic, the audit trail broke and the data became incomparable.</p>
