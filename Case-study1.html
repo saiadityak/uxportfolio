@@ -1031,6 +1031,81 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 </div>
 
 <!-- ════════════════════════════════════════════════ -->
+<!--  EXECUTIVE SUMMARY                              -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">00 — Executive Summary</p>
+  <h2 class="section-title">One-Minute Overview</h2>
+  <p>The Customer Portal is a business-critical tool used daily by 100+ operations staff across sales, retail audit, and program management teams. Over 18 months, the module count had grown from 12 to 30+ without any IA restructuring — creating a navigation system that required users to memorize paths, maintain personal notes, and open parallel browser tabs just to do their jobs.</p>
+  <p>Support tickets tied to navigation had increased 40% year-over-year. Before Q4 onboarding of 20 new ops hires, leadership escalated the issue as a productivity and retention risk.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:24px; margin-bottom:8px;">
+    <div style="background:var(--old-bg); border:1px solid var(--old-border); border-radius:10px; padding:20px 22px;">
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--old); margin-bottom:12px;">The Problem</div>
+      <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">A 30+ module SaaS portal with flat, hierarchical navigation that forced users to drill 4 levels deep — with no search, no persistent structure, and no orientation cues. Power users had developed workarounds (notes, bookmarks, multi-tabs) just to survive the navigation.</p>
+    </div>
+    <div style="background:var(--new-bg); border:1px solid var(--new-border); border-radius:10px; padding:20px 22px;">
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--new); margin-bottom:12px;">The Solution</div>
+      <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">A 3-level persistent sidebar with integrated search — consolidating 18+ flat items into 7 purposeful sections organized around user workflows. Shipped in 6 weeks. Validated with usability testing before and after. Delivered measurable business impact within 30 days.</p>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:10px;">
+    <div style="background:var(--white); padding:16px 18px; text-align:center;">
+      <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">88%</div>
+      <div style="font-size:11px; color:var(--muted); line-height:1.4;">task time reduction</div>
+    </div>
+    <div style="background:var(--white); padding:16px 18px; text-align:center;">
+      <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">67%</div>
+      <div style="font-size:11px; color:var(--muted); line-height:1.4;">fewer support tickets</div>
+    </div>
+    <div style="background:var(--white); padding:16px 18px; text-align:center;">
+      <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--text); line-height:1; margin-bottom:4px;">4.2→7.8</div>
+      <div style="font-size:11px; color:var(--muted); line-height:1.4;">satisfaction score</div>
+    </div>
+    <div style="background:var(--white); padding:16px 18px; text-align:center;">
+      <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--new); line-height:1; margin-bottom:4px;">~$553K</div>
+      <div style="font-size:11px; color:var(--muted); line-height:1.4;">annual value unlocked</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  CONSTRAINTS                                    -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">00B — Constraints</p>
+  <h2 class="section-title">Working Within Real Constraints</h2>
+  <p>Every design decision was shaped by three types of constraint operating simultaneously. Understanding these was as important as understanding the user problem — they defined what "good" actually meant in this context.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:24px;">
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="width:32px; height:32px; border-radius:8px; background:#FEF3C7; border:1px solid #FDE68A; display:flex; align-items:center; justify-content:center; font-size:15px; margin-bottom:14px;">⏱</div>
+      <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:8px;">Timeline</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Q4 onboarding of 20 new ops hires created a hard deadline. Leadership needed the redesign live before those users touched the portal for the first time — giving us a fixed 6-week window from kickoff to production.</p>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="width:32px; height:32px; border-radius:8px; background:var(--old-bg); border:1px solid var(--old-border); display:flex; align-items:center; justify-content:center; font-size:15px; margin-bottom:14px;">⚙️</div>
+      <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:8px;">Technical</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">The portal ran on a legacy frontend stack. Engineering could not refactor the routing architecture in this cycle — meaning the new navigation had to work within the existing module structure and permission system, with no new backend endpoints.</p>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="width:32px; height:32px; border-radius:8px; background:var(--new-bg); border:1px solid var(--new-border); display:flex; align-items:center; justify-content:center; font-size:15px; margin-bottom:14px;">🏢</div>
+      <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:8px;">Business</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Ops leadership had conflicting priorities: power users needed speed, but managers wanted new hires to learn the module structure rather than rely on search. The solution had to satisfy both without separate codepaths. No A/B testing infrastructure was available.</p>
+    </div>
+  </div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:16px 20px; margin-top:16px;">
+    <p style="font-size:13.5px; color:var(--text-2); margin:0; line-height:1.6;">⚠️ <strong>The central tension:</strong> designing for <em>power users</em> (who needed frictionless recall) simultaneously with <em>new users</em> (who needed discoverable structure) — without the budget for role-based navigation variants or personalization features.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
 <!--  THE CHALLENGE                                  -->
 <!-- ════════════════════════════════════════════════ -->
 <div class="section">
@@ -1536,6 +1611,65 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <hr class="divider">
 
 <!-- ════════════════════════════════════════════════ -->
+<!--  STAKEHOLDER ALIGNMENT                          -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">06B — Influence</p>
+  <h2 class="section-title">Stakeholder Alignment</h2>
+  <p>Three stakeholder groups had legitimate but conflicting goals. Shipping this project required more than good design — it required building shared language, making tradeoffs visible, and knowing when to push back versus when to adapt.</p>
+
+  <div style="display:flex; flex-direction:column; gap:10px; margin-top:24px; margin-bottom:28px;">
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:180px 1fr; gap:0; min-height:80px;">
+        <div style="background:var(--surface); border-right:1px solid var(--border); padding:18px 20px; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:3px;">Product</div>
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); line-height:1.4;">Wanted search-only,<br>fast-ship approach</div>
+        </div>
+        <div style="padding:18px 22px;">
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted2); margin-bottom:6px;">What I did</div>
+          <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">Ran a 1-hour co-design session with the PM using real task data. Demonstrated that search-only added 4+ seconds per task for unfamiliar module names — the exact opposite of their goal. This reframed the conversation from "which pattern" to "what does speed actually require."</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:180px 1fr; gap:0; min-height:80px;">
+        <div style="background:var(--surface); border-right:1px solid var(--border); padding:18px 20px; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:3px;">Engineering</div>
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); line-height:1.4;">Pushed collapsed sidebar<br>to reduce CSS scope</div>
+        </div>
+        <div style="padding:18px 22px;">
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted2); margin-bottom:6px;">What I did</div>
+          <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">Translated the design impact into their language: 100 users × 50 nav switches/day × 2 extra clicks = 10,000 unnecessary clicks daily. Proposed a slim-mode toggle as the engineering compromise — a single CSS class toggle — which reduced their scope while preserving the UX goal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:180px 1fr; gap:0; min-height:80px;">
+        <div style="background:var(--surface); border-right:1px solid var(--border); padding:18px 20px; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:3px;">Ops Leadership</div>
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; color:var(--muted2); line-height:1.4;">Wanted new hires to<br>"learn the structure"</div>
+        </div>
+        <div style="padding:18px 22px;">
+          <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted2); margin-bottom:6px;">What I did</div>
+          <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">Showed them the usability data: new users were failing navigation tasks entirely — not learning from failure, just getting blocked. Reframed their goal: the sidebar IA teaches the structure persistently, while search serves as a rescue. This satisfied their underlying need (module literacy) without sacrificing efficiency for existing users.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px; margin-top:4px;">
+    <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2); margin-bottom:12px;">Key Influence Technique</div>
+    <p style="font-size:13.5px; color:var(--text-2); line-height:1.6; margin:0;">In every misalignment, I led with data before opinion. I never asked stakeholders to "trust" a design direction — I showed them what the numbers implied and let them arrive at the recommendation themselves. This built ownership across the team rather than resistance to a designer's call.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════ -->
 <!--  HI-FI MOCKUPS                                  -->
 <!-- ════════════════════════════════════════════════ -->
 <div class="section">
@@ -1711,6 +1845,63 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <span class="quote-mark">"</span>
       <p class="quote-text">The search is a game-changer — I'm done in seconds now.</p>
     </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!--  LESSONS LEARNED                                -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="section">
+  <p class="eyebrow">11 — Reflection</p>
+  <h2 class="section-title">What I'd Do Differently</h2>
+  <p>This project delivered strong results, but every project teaches something. These are the honest lessons I'd apply to the next one — not caveats, but genuine changes in approach.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:24px;">
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--old); background:var(--old-bg); border:1px solid var(--old-border); padding:3px 10px; border-radius:20px;">What happened</div>
+      </div>
+      <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">I underinvested in new-user onboarding</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 12px;">The new-user discovery gap was flagged in usability testing but deprioritized as a V2 item. In hindsight, even a minimal first-session walkthrough or a persistent "Where am I?" tooltip system could have been shipped in V1 within the engineering constraints we had.</p>
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--new); margin-bottom:5px;">Next time</div>
+      <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Advocate for a lightweight onboarding layer from the start — even 2 tooltip overlays can close a significant new-user gap without meaningful engineering cost.</p>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--old); background:var(--old-bg); border:1px solid var(--old-border); padding:3px 10px; border-radius:20px;">What happened</div>
+      </div>
+      <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">Stakeholder alignment took too long in week 3</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 12px;">I ran card sorting with users before aligning Ops leadership on the new module groupings — which meant rework when leadership pushed back on how "Configuration" was categorized. The sequence should have been: leadership alignment first, then user validation of the resulting structure.</p>
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--new); margin-bottom:5px;">Next time</div>
+      <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Run a lightweight "draft IA review" with key stakeholders before user research — not to let them design it, but to surface blockers early so research can be structured around them.</p>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--old); background:var(--old-bg); border:1px solid var(--old-border); padding:3px 10px; border-radius:20px;">What happened</div>
+      </div>
+      <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">5 test participants wasn't enough breadth</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 12px;">The research was meaningful, but 5 users — all power users — left a blind spot around newer or part-time portal users. Several of the "easy" discoverability ratings in final testing were from people who already knew the modules. The data looked better than the actual experience for the long tail.</p>
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--new); margin-bottom:5px;">Next time</div>
+      <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Intentionally recruit across the user spectrum — at least 2 new users and 2 power users in every round of testing — so results reflect the full population, not just the most vocal advocates.</p>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:22px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <div style="font-family:'Geist Mono',monospace; font-size:11px; color:var(--old); background:var(--old-bg); border:1px solid var(--old-border); padding:3px 10px; border-radius:20px;">What happened</div>
+      </div>
+      <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:8px;">No baseline analytics before the project started</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0 0 12px;">The business case was strong, but the "before" metrics relied on usability test data and support ticket volume rather than actual in-product behavior data. I couldn't say with confidence which modules were visited most, or where in the nav users dropped off — because no tracking existed.</p>
+      <div style="font-family:'Geist Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--new); margin-bottom:5px;">Next time</div>
+      <p style="font-size:13px; color:var(--text-2); line-height:1.5; margin:0;">Push to instrument analytics before kicking off a navigation redesign — even basic click and time-on-page data creates a more defensible before/after comparison and reveals patterns qualitative research misses.</p>
+    </div>
+
+  </div>
+
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px 22px; margin-top:16px;">
+    <p style="font-family:'Instrument Serif',serif; font-style:italic; font-size:16px; color:var(--text-2); line-height:1.6; margin:0;">"The best outcome from this project wasn't the 88% metric. It was discovering that design decisions — defended with data, sequenced correctly, and communicated in stakeholder language — can move a team of skeptics to advocates within a single conversation."</p>
   </div>
 </div>
 
